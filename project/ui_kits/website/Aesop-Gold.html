@@ -1,4 +1,5 @@
-<!-- @dsCard group="Products" viewport="1280x900" name="Website - Luxury Playful (B&W + Gold)" -->
+<!-- @startingPoint section="Website" subtitle="Luxury landing page — Aesop + Gold" viewport="1280x900" -->
+<!-- @dsCard group="Products" viewport="1280x900" name="Website - Aesop Gold" -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,41 +7,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Persona Business Lab</title>
   <link rel="stylesheet" href="../../styles.css">
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap">
   <style>
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* ── Tweakable custom properties (updated by JS) ── */
+    :root {
+      --pg-bg:         #0a0a0a;
+      --pg-surface:    #0f0f0f;
+      --pg-text:       #e8e8e8;
+      --pg-subtext:    #aaa;
+      --pg-muted:      #666;
+      --pg-border:     #1a1a1a;
+      --pg-hero-bg:    linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
+      --pg-hero-glow:  rgba(212,175,55,.05);
+
+      --pg-accent:     #d4af37;
+      --pg-accent-h:   #e8c547;
+      --pg-accent-rgb: 212,175,55;
+
+      --pg-h-font:     'Georgia', serif;
+      --pg-h-weight:   300;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: #0a0a0a;
-      color: #e8e8e8;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--pg-bg);
+      color: var(--pg-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-weight: 300;
+      transition: background 400ms ease, color 400ms ease;
     }
 
-    /* ===== NAVBAR ===== */
+    /* ── Navbar ── */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: #0a0a0a;
-      border-bottom: 1px solid #1a1a1a;
-      position: relative;
+      background: var(--pg-bg);
+      border-bottom: 1px solid var(--pg-border);
+      position: sticky;
+      top: 0;
       z-index: 100;
+      transition: background 400ms ease, border-color 400ms ease;
     }
-
     .logo {
       font-size: 14px;
       font-weight: 400;
-      letter-spacing: 0.15em;
-      color: #d4af37;
+      letter-spacing: .15em;
+      color: var(--pg-accent);
       text-transform: uppercase;
       font-family: 'Georgia', serif;
+      transition: color 400ms ease;
     }
-
     .nav-links {
       display: flex;
       gap: 2.5rem;
@@ -48,23 +69,19 @@
       margin: 0;
       padding: 0;
     }
-
     .nav-links a {
       font-size: 12px;
-      color: #999;
+      color: var(--pg-muted);
       text-decoration: none;
       transition: color 200ms ease;
-      letter-spacing: 0.05em;
+      letter-spacing: .05em;
       text-transform: uppercase;
     }
+    .nav-links a:hover { color: var(--pg-accent); }
 
-    .nav-links a:hover {
-      color: #d4af37;
-    }
-
-    /* ===== HERO SECTION ===== */
+    /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
+      background: var(--pg-hero-bg);
       padding: 6rem 3rem;
       text-align: center;
       min-height: 700px;
@@ -74,52 +91,48 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      transition: background 400ms ease;
     }
-
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--pg-hero-glow) 0%, transparent 70%);
       pointer-events: none;
+      transition: background 400ms ease;
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 800px;
     }
-
     .hero-divider {
       width: 60px;
       height: 2px;
-      background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 0 auto 2rem auto;
+      background: linear-gradient(90deg, transparent, var(--pg-accent), transparent);
+      margin: 0 auto 2rem;
+      transition: background 400ms ease;
     }
-
     .hero h1 {
       font-size: 56px;
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      margin: 0 0 1.5rem 0;
-      color: #fff;
+      font-weight: var(--pg-h-weight);
+      letter-spacing: -.02em;
+      margin: 0 0 1.5rem;
+      color: var(--pg-text);
       line-height: 1.15;
-      font-family: 'Georgia', serif;
+      font-family: var(--pg-h-font);
+      transition: font-family 300ms ease, font-weight 300ms ease, color 400ms ease;
     }
-
     .hero p {
       font-size: 16px;
-      color: #aaa;
+      color: var(--pg-subtext);
       max-width: 600px;
-      margin: 0 auto 2.5rem auto;
+      margin: 0 auto 2.5rem;
       line-height: 1.8;
       font-weight: 300;
-      letter-spacing: 0.01em;
+      letter-spacing: .01em;
+      transition: color 400ms ease;
     }
-
     .hero-buttons {
       display: flex;
       gap: 1rem;
@@ -127,11 +140,12 @@
       flex-wrap: wrap;
     }
 
+    /* ── Buttons ── */
     .btn {
-      padding: 0.875rem 2rem;
+      padding: .875rem 2rem;
       font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       border: none;
       cursor: pointer;
@@ -139,150 +153,152 @@
       text-decoration: none;
       display: inline-block;
       border-radius: 28px;
+      font-family: inherit;
     }
-
     .btn-primary {
-      background: #d4af37;
+      background: var(--pg-accent);
       color: #0a0a0a;
     }
-
     .btn-primary:hover {
-      background: #e8c547;
+      background: var(--pg-accent-h);
       transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 12px 24px rgba(var(--pg-accent-rgb), .3);
     }
-
     .btn-secondary {
       background: transparent;
-      color: #d4af37;
-      border: 1px solid #d4af37;
+      color: var(--pg-accent);
+      border: 1px solid var(--pg-accent);
     }
-
     .btn-secondary:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: #e8c547;
-      color: #e8c547;
+      background: rgba(var(--pg-accent-rgb), .1);
+      color: var(--pg-accent-h);
+      border-color: var(--pg-accent-h);
     }
 
-    /* ===== FREE AUDIT SECTION ===== */
+    /* ── Free Audit section ── */
     .free-audit {
-      background: #0f0f0f;
-      padding: 4rem 3rem 6rem;
+      background: var(--pg-surface);
+      padding: 4rem 3rem 5rem;
       text-align: center;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid var(--pg-border);
+      border-bottom: 1px solid var(--pg-border);
+      transition: background 400ms ease, border-color 400ms ease;
     }
-
     .free-audit h2 {
       font-size: 40px;
-      font-weight: 300;
-      margin: 0 0 1rem 0;
-      color: #fff;
-      font-family: 'Georgia', serif;
+      font-weight: var(--pg-h-weight);
+      margin: 0 0 1rem;
+      color: var(--pg-text);
+      font-family: var(--pg-h-font);
+      transition: font-family 300ms ease, font-weight 300ms ease, color 400ms ease;
     }
-
-    .free-audit p {
+    .free-audit > p {
       font-size: 15px;
-      color: #aaa;
+      color: var(--pg-text);
       max-width: 600px;
-      margin: 0 auto 2rem auto;
+      margin: 0 auto 2rem;
       line-height: 1.7;
+      transition: color 400ms ease;
     }
-
-    .free-audit-subtext {
+    .free-audit-note {
       font-size: 11px;
-      color: #666;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+      color: var(--pg-muted);
       margin-top: 1.5rem;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       text-transform: uppercase;
+      transition: color 400ms ease;
     }
 
-    /* ===== FEATURES SECTION ===== */
-    .features {
-      background: #0a0a0a;
+    /* ── Features ── */
+    .features-wrap {
+      background: var(--pg-bg);
       padding: 5rem 3rem;
+      transition: background 400ms ease;
+    }
+    .features {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .feature {
       padding: 2rem;
-      background: #0f0f0f;
+      background: var(--pg-surface);
       border-radius: 20px;
-      border: 1px solid #1a1a1a;
+      border: 1px solid var(--pg-border);
       text-align: left;
-      transition: all 300ms ease;
+      transition: border-color 300ms ease, transform 300ms ease, background 400ms ease;
     }
-
     .feature:hover {
-      border-color: #d4af37;
+      border-color: var(--pg-accent);
       transform: translateY(-4px);
     }
-
     .feature-icon {
       width: 48px;
       height: 48px;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid #d4af37;
+      background: rgba(var(--pg-accent-rgb), .15);
+      border: 1px solid var(--pg-accent);
       border-radius: 12px;
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      color: var(--pg-accent);
+      transition: background 400ms ease, border-color 400ms ease, color 400ms ease;
     }
-
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+    }
     .feature h3 {
       font-size: 18px;
       font-weight: 400;
-      margin: 0 0 0.75rem 0;
-      color: #fff;
-      letter-spacing: -0.01em;
+      margin: 0 0 .75rem;
+      color: var(--pg-text);
+      letter-spacing: -.01em;
+      transition: color 400ms ease;
     }
-
     .feature p {
       font-size: 14px;
-      color: #888;
+      color: var(--pg-subtext);
       margin: 0;
       line-height: 1.7;
       font-weight: 300;
+      transition: color 400ms ease;
     }
 
-    /* ===== CTA BRIDGE ===== */
+    /* ── Bridge ── */
     .bridge {
-      background: #0f0f0f;
+      background: var(--pg-surface);
       padding: 2rem 3rem;
       text-align: center;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid var(--pg-border);
+      transition: background 400ms ease, border-color 400ms ease;
     }
-
     .bridge p {
       font-size: 15px;
-      color: #aaa;
+      color: var(--pg-subtext);
       margin: 0;
       font-style: italic;
+      transition: color 400ms ease;
     }
 
-    /* ===== PRICING SECTION ===== */
+    /* ── Pricing ── */
     .pricing {
-      background: #0a0a0a;
+      background: var(--pg-bg);
       padding: 5rem 3rem;
       text-align: center;
+      transition: background 400ms ease;
     }
-
     .pricing h2 {
       font-size: 40px;
-      font-weight: 300;
-      margin: 0 0 3rem 0;
-      color: #fff;
-      font-family: 'Georgia', serif;
+      font-weight: var(--pg-h-weight);
+      margin: 0 0 3rem;
+      color: var(--pg-text);
+      font-family: var(--pg-h-font);
+      transition: font-family 300ms ease, font-weight 300ms ease, color 400ms ease;
     }
-
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -290,310 +306,148 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .pricing-card {
-      background: #0f0f0f;
+      background: var(--pg-surface);
       padding: 2.5rem;
-      border: 1px solid #1a1a1a;
+      border: 1px solid var(--pg-border);
       border-radius: 24px;
       text-align: left;
       position: relative;
-      transition: all 300ms ease;
+      transition: border-color 300ms ease, transform 300ms ease, background 400ms ease;
     }
-
     .pricing-card:hover {
-      border-color: #d4af37;
+      border-color: var(--pg-accent);
       transform: translateY(-4px);
     }
-
     .pricing-card.featured {
-      border: 2px solid #d4af37;
-      background: rgba(212, 175, 55, 0.05);
+      border: 2px solid var(--pg-accent);
+      background: rgba(var(--pg-accent-rgb), .05);
       transform: scale(1.02);
     }
-
     .pricing-card.featured:hover {
       transform: scale(1.02) translateY(-4px);
     }
-
     .pricing-card.featured::before {
       content: 'POPULAIRE';
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: #d4af37;
+      background: var(--pg-accent);
       color: #0a0a0a;
-      padding: 0.25rem 1rem;
+      padding: .25rem 1rem;
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       border-radius: 12px;
     }
-
     .pricing-card h3 {
       font-size: 18px;
       font-weight: 400;
-      margin: 0 0 1rem 0;
-      color: #fff;
-      letter-spacing: 0.01em;
+      margin: 0 0 1rem;
+      color: var(--pg-text);
+      letter-spacing: .01em;
+      transition: color 400ms ease;
     }
-
     .price {
       font-size: 36px;
       font-weight: 300;
-      color: #d4af37;
-      margin: 1.5rem 0 0.5rem 0;
+      color: var(--pg-accent);
+      margin: 1.5rem 0 .5rem;
       font-family: 'Georgia', serif;
+      line-height: 1.2;
+      transition: color 400ms ease;
     }
-
     .price-period {
       font-size: 12px;
-      color: #666;
-      margin: 0 0 1.5rem 0;
+      color: var(--pg-subtext);
+      margin: 0 0 1.5rem;
+      transition: color 400ms ease;
     }
-
-    .pricing-card p {
+    .pricing-card > p {
       font-size: 13px;
-      color: #888;
-      margin: 0 0 2rem 0;
+      color: var(--pg-text);
+      margin: 0 0 2rem;
       line-height: 1.7;
       min-height: 60px;
+      transition: color 400ms ease;
     }
-
     .pricing-btn {
       display: block;
       width: 100%;
-      padding: 0.875rem 1.5rem;
+      padding: .875rem 1.5rem;
       background: transparent;
-      color: #d4af37;
-      text-decoration: none;
+      color: var(--pg-accent);
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      border: 1px solid #d4af37;
+      border: 1px solid var(--pg-accent);
       cursor: pointer;
       transition: all 300ms ease;
       border-radius: 20px;
+      font-family: inherit;
     }
-
     .pricing-btn:hover {
-      background: #d4af37;
+      background: var(--pg-accent);
       color: #0a0a0a;
     }
-
     .pricing-card.featured .pricing-btn {
-      background: #d4af37;
+      background: var(--pg-accent);
       color: #0a0a0a;
-      border-color: #d4af37;
     }
-
     .pricing-card.featured .pricing-btn:hover {
-      background: #e8c547;
-      border-color: #e8c547;
+      background: var(--pg-accent-h);
+      border-color: var(--pg-accent-h);
     }
 
-    /* ===== FOOTER ===== */
+    /* ── Footer ── */
     .footer {
       background: #000;
-      color: #666;
+      color: var(--pg-muted);
       padding: 3rem;
       text-align: center;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid var(--pg-border);
       font-size: 12px;
+      transition: border-color 400ms ease;
     }
-
-    .footer p {
-      margin: 0.5rem 0;
+    .footer p { margin: .5rem 0; }
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--pg-accent);
+      margin: 1.5rem auto;
+      transition: background 400ms ease;
     }
-
     .footer-signature {
       margin-top: 1rem;
       font-style: italic;
       font-size: 11px;
-      color: #d4af37;
+      color: var(--pg-accent);
       font-family: 'Georgia', serif;
+      transition: color 400ms ease;
     }
 
-    .footer-divider {
-      width: 40px;
-      height: 1px;
-      background: #d4af37;
-      margin: 1.5rem auto;
-    }
-
-    /* ===== TWEAKS PANEL ===== */
-    .tweaks-button {
-      position: fixed;
-      bottom: 3rem;
-      right: 3rem;
-      width: 56px;
-      height: 56px;
-      background: #d4af37;
-      color: #0a0a0a;
-      border: none;
-      border-radius: 50%;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
-      transition: all 300ms ease;
-      z-index: 9999;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tweaks-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
-    }
-
-    .tweaks-panel {
-      position: fixed;
-      bottom: 7rem;
-      right: 2rem;
-      width: 300px;
-      background: #0f0f0f;
-      border: 1px solid #1a1a1a;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      display: none;
-    }
-
-    .tweaks-panel.open {
-      display: block;
-      animation: slideUp 300ms ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .tweak-section {
-      margin-bottom: 1.5rem;
-    }
-
-    .tweak-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .tweak-label {
-      font-size: 12px;
-      color: #aaa;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
-      display: block;
-      font-weight: 600;
-    }
-
-    .tweak-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .tweak-radio {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-    }
-
-    .tweak-radio input[type="radio"] {
-      cursor: pointer;
-      accent-color: #d4af37;
-    }
-
-    .tweak-radio label {
-      cursor: pointer;
-      font-size: 13px;
-      color: #ddd;
-      margin: 0;
-    }
-
-    .tweak-select {
-      background: #1a1a1a;
-      color: #fff;
-      border: 1px solid #2a2a2a;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: border-color 200ms ease;
-    }
-
-    .tweak-select:hover {
-      border-color: #d4af37;
-    }
-
-    /* ===== RESPONSIVE ===== */
+    /* ── Responsive ── */
     @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem 1.5rem;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .hero {
-        padding: 3rem 1.5rem;
-      }
-
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      .features,
-      .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .pricing-card.featured {
-        transform: scale(1);
-      }
-
-      .pricing-card.featured:hover {
-        transform: scale(1) translateY(-4px);
-      }
-
-      .tweaks-button {
-        bottom: 1rem;
-        right: 1rem;
-        width: 48px;
-        height: 48px;
-        font-size: 18px;
-      }
-
-      .tweaks-panel {
-        bottom: 5rem;
-        right: 1rem;
-        width: 280px;
-      }
+      .navbar { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3rem 1.5rem; min-height: auto; }
+      .hero h1 { font-size: 36px; }
+      .features, .pricing-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pricing-card.featured { transform: scale(1); }
+      .pricing-card.featured:hover { transform: translateY(-4px); }
     }
   </style>
-<link id="gfont-Abril-Fatface" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface:wght@300;400;500;600;700&amp;display=swap">
 </head>
 <body>
+
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">◆ Persona Business Lab</div>
     <ul class="nav-links">
-      <li><a href="#features">About</a></li>
+      <li><a href="#features">À propos</a></li>
       <li><a href="#pricing">Tarifs</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -603,7 +457,7 @@
   <section class="hero">
     <div class="hero-content">
       <div class="hero-divider"></div>
-      <h1 style="font-family: &quot;Abril Fatface&quot;">Audit Business<br/>Personnalisé</h1>
+      <h1>Audit Business<br>Personnalisé</h1>
       <p>Un diagnostic détaillé adapté à votre profil entrepreneurial. Recommandations concrètes pour activer votre potentiel de croissance sans limites.</p>
       <div class="hero-buttons">
         <button class="btn btn-primary">Commencer</button>
@@ -612,63 +466,79 @@
     </div>
   </section>
 
-  <!-- FREE AUDIT SECTION -->
+  <!-- FREE AUDIT -->
   <section class="free-audit">
     <h2>Commencez Gratuitement</h2>
-    <p style="color: rgb(255, 255, 255)">Découvrez les bases de votre profil entrepreneurial avec notre audit simplifié. Zéro engagement, zéro frais.</p>
+    <p>Découvrez les bases de votre profil entrepreneurial avec notre audit simplifié. Zéro engagement, zéro frais.</p>
     <button class="btn btn-primary">Démarrer l'Audit Gratuit</button>
-    <p class="free-audit-subtext" style="font-size: 12px">10 minutes • Résultats instantanés • Zéro spam</p>
+    <p class="free-audit-note">10 minutes &bull; Résultats instantanés &bull; Zéro spam</p>
   </section>
 
   <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="feature">
-      <div class="feature-icon">📊</div>
-      <h3>Analyse Approfondie</h3>
-      <p>Diagnostic complet basé sur votre personnalité et vos besoins business spécifiques.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📈</div>
-      <h3>Plan d'Action</h3>
-      <p>Recommandations précises et mesurables adaptées à votre contexte entrepreneurial.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🤝</div>
-      <h3>Accompagnement 1-to-1</h3>
-      <p>Séances personnalisées avec experte & recherche de prestataires alignés à vos valeurs.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📱</div>
-      <h3>App Mobile</h3>
-      <p>Suivi de votre progression et accès à vos résultats d'audit depuis votre téléphone.</p>
+  <section class="features-wrap" id="features">
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="9" width="4" height="12" rx="1"/><rect x="10" y="5" width="4" height="16" rx="1"/><rect x="17" y="1" width="4" height="20" rx="1"/>
+          </svg>
+        </div>
+        <h3>Analyse Approfondie</h3>
+        <p>Diagnostic complet basé sur votre personnalité et vos besoins business spécifiques.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <h3>Plan d'Action</h3>
+        <p>Recommandations précises et mesurables adaptées à votre contexte entrepreneurial.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Accompagnement 1-to-1</h3>
+        <p>Séances personnalisées avec experte & recherche de prestataires alignés à vos valeurs.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <h3>App Mobile</h3>
+        <p>Suivi de votre progression et accès à vos résultats d'audit depuis votre téléphone.</p>
+      </div>
     </div>
   </section>
 
-  <!-- CTA BRIDGE -->
+  <!-- BRIDGE -->
   <section class="bridge">
     <p>Prêt(e) à investir dans votre réussite ?</p>
   </section>
 
   <!-- PRICING -->
   <section class="pricing" id="pricing">
-    <h2 style="font-family: &quot;Abril Fatface&quot;">Choisissez Votre Parcours</h2>
+    <h2>Choisissez Votre Parcours</h2>
     <div class="pricing-grid">
       <div class="pricing-card">
         <h3>Audit Seul</h3>
         <div class="price">101€</div>
-        <p class="price-period" style="color: rgb(191, 190, 190)">Accès une fois</p>
-        <p style="color: rgb(255, 255, 255)">Audit détaillé & rapport complet avec recommandations stratégiques.</p>
+        <p class="price-period">Accès une fois</p>
+        <p>Audit détaillé & rapport complet avec recommandations stratégiques.</p>
         <button class="pricing-btn">Choisir</button>
       </div>
-
       <div class="pricing-card featured">
         <h3>Audit + Accompagnement</h3>
-        <div class="price">À partir de<br/>740€</div>
-        <p class="price-period" style="color: rgb(182, 182, 182)">Forfait flexible</p>
-        <p style="color: rgb(255, 255, 255)">Audit + séances 1-to-1 avec experte & recherche de prestataires.</p>
+        <div class="price">À partir de<br>740€</div>
+        <p class="price-period">Forfait flexible</p>
+        <p>Audit + séances 1-to-1 avec experte & recherche de prestataires.</p>
         <button class="pricing-btn">Choisir</button>
       </div>
-
       <div class="pricing-card">
         <h3>Premium+</h3>
         <div class="price">Sur devis</div>
@@ -680,187 +550,119 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" id="contact">
     <div class="footer-divider"></div>
-    <p style="color: rgb(164, 159, 159)">© 2026 Persona Business Lab</p>
+    <p>© 2026 Persona Business Lab</p>
     <p class="footer-signature">by Aurore S</p>
   </footer>
 
-  <!-- TWEAKS PANEL -->
-  <button class="tweaks-button" id="tweaks-toggle">⚙️</button>
-  <div class="tweaks-panel" id="tweaks-panel">
-    <div class="tweak-section">
-      <label class="tweak-label">Mood</label>
-      <div class="tweak-options">
-        <div class="tweak-radio">
-          <input type="radio" id="mood-luxury" name="mood" value="luxury" checked>
-          <label for="mood-luxury">✨ Luxury Dark</label>
-        </div>
-        <div class="tweak-radio">
-          <input type="radio" id="mood-playful" name="mood" value="playful">
-          <label for="mood-playful">☀️ Playful Light</label>
-        </div>
-      </div>
-    </div>
+  <!-- TWEAKS PANEL (React island — activated by host toolbar) -->
+  <div id="tweaks-root"></div>
 
-    <div class="tweak-section">
-      <label class="tweak-label" for="accent-select">Accent Color</label>
-      <select class="tweak-select" id="accent-select">
-        <option value="#d4af37">✨ Gold</option>
-        <option value="#c0c0c0">🌙 Silver</option>
-        <option value="#b87333">🔶 Copper</option>
-        <option value="#ffffff">⚪ White</option>
-      </select>
-    </div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script type="text/babel">
+    const { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor } = window;
 
-    <div class="tweak-section">
-      <label class="tweak-label">Typography</label>
-      <div class="tweak-options">
-        <div class="tweak-radio">
-          <input type="radio" id="typo-georgia" name="typography" value="georgia" checked>
-          <label for="typo-georgia">Georgia (Elegant)</label>
-        </div>
-        <div class="tweak-radio">
-          <input type="radio" id="typo-modern" name="typography" value="modern">
-          <label for="typo-modern">Modern (Tech)</label>
-        </div>
-        <div class="tweak-radio">
-          <input type="radio" id="typo-playful" name="typography" value="playful">
-          <label for="typo-playful">Playful (Fun)</label>
-        </div>
-      </div>
-    </div>
-  </div>
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "mood":       "luxury",
+      "accent":     "#d4af37",
+      "typography": "georgia"
+    }/*EDITMODE-END*/;
 
-  <script>
-    // Tweaks Panel Controller
-    const tweaksToggle = document.getElementById('tweaks-toggle');
-    const tweaksPanel = document.getElementById('tweaks-panel');
-    
-    tweaksToggle.addEventListener('click', () => {
-      tweaksPanel.classList.toggle('open');
-    });
+    const MOODS = {
+      luxury: {
+        '--pg-bg':         '#0a0a0a',
+        '--pg-surface':    '#0f0f0f',
+        '--pg-text':       '#e8e8e8',
+        '--pg-subtext':    '#aaa',
+        '--pg-muted':      '#666',
+        '--pg-border':     '#1a1a1a',
+        '--pg-hero-bg':    'linear-gradient(135deg,#0a0a0a 0%,#1a1410 50%,#0a0a0a 100%)',
+        '--pg-hero-glow':  'rgba(212,175,55,.05)',
+      },
+      playful: {
+        '--pg-bg':         '#f8f7f3',
+        '--pg-surface':    '#ffffff',
+        '--pg-text':       '#1a1a1a',
+        '--pg-subtext':    '#555',
+        '--pg-muted':      '#999',
+        '--pg-border':     '#e0dcd8',
+        '--pg-hero-bg':    'linear-gradient(135deg,#f8f7f3 0%,#ffffff 50%,#f8f7f3 100%)',
+        '--pg-hero-glow':  'rgba(212,175,55,.08)',
+      },
+    };
 
-    // Close panel when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!tweaksPanel.contains(e.target) && !tweaksToggle.contains(e.target)) {
-        tweaksPanel.classList.remove('open');
-      }
-    });
+    const TYPO = {
+      georgia: { '--pg-h-font': "'Georgia', serif",                                     '--pg-h-weight': '300' },
+      modern:  { '--pg-h-font': "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif", '--pg-h-weight': '600' },
+      playful: { '--pg-h-font': "'Abril Fatface', serif",                                '--pg-h-weight': '400' },
+    };
 
-    // Mood Controller
-    document.querySelectorAll('input[name="mood"]').forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        const mood = e.target.value;
-        if (mood === 'luxury') {
-          document.body.style.background = '#0a0a0a';
-          document.body.style.color = '#e8e8e8';
-          document.querySelectorAll('.navbar').forEach(el => {
-            el.style.background = '#0a0a0a';
-            el.style.borderBottomColor = '#1a1a1a';
-          });
-          document.querySelectorAll('.hero').forEach(el => {
-            el.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%)';
-          });
-          document.querySelectorAll('.free-audit').forEach(el => {
-            el.style.background = '#0f0f0f';
-          });
-          document.querySelectorAll('h1, h2, h3').forEach(el => {
-            el.style.color = '#fff';
-          });
-          document.querySelectorAll('.hero p, .free-audit p, .feature p, .bridge p').forEach(el => {
-            el.style.color = '#aaa';
-          });
-          document.querySelectorAll('.feature, .pricing-card').forEach(el => {
-            el.style.background = '#0f0f0f';
-            el.style.borderColor = '#1a1a1a';
-          });
-        } else {
-          document.body.style.background = '#f8f7f3';
-          document.body.style.color = '#1a1a1a';
-          document.querySelectorAll('.navbar').forEach(el => {
-            el.style.background = '#fff';
-            el.style.borderBottomColor = '#e0dcd8';
-          });
-          document.querySelectorAll('.hero').forEach(el => {
-            el.style.background = 'linear-gradient(135deg, #f8f7f3 0%, #fff 50%, #f8f7f3 100%)';
-          });
-          document.querySelectorAll('.free-audit').forEach(el => {
-            el.style.background = '#faf8f4';
-          });
-          document.querySelectorAll('h1, h2, h3').forEach(el => {
-            el.style.color = '#1a1a1a';
-          });
-          document.querySelectorAll('.hero p, .free-audit p, .feature p, .bridge p').forEach(el => {
-            el.style.color = '#666';
-          });
-          document.querySelectorAll('.feature, .pricing-card').forEach(el => {
-            el.style.background = '#fff';
-            el.style.borderColor = '#e0dcd8';
-          });
-        }
-      });
-    });
+    function hexToRgb(hex) {
+      const h = hex.replace('#', '');
+      const n = parseInt(h.length === 3 ? h.replace(/./g, c => c+c) : h.padEnd(6,'0'), 16);
+      return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+    }
 
-    // Accent Color Controller
-    document.getElementById('accent-select').addEventListener('change', (e) => {
-      const accentColor = e.target.value;
-      document.querySelectorAll('.logo, .price, .footer-signature').forEach(el => {
-        el.style.color = accentColor;
-      });
-      document.querySelectorAll('.btn-primary').forEach(el => {
-        el.style.background = accentColor;
-      });
-      document.querySelectorAll('.btn-secondary, .pricing-btn').forEach(el => {
-        el.style.borderColor = accentColor;
-        el.style.color = accentColor;
-      });
-      document.querySelectorAll('.hero-divider, .footer-divider').forEach(el => {
-        el.style.background = `linear-gradient(90deg, transparent, ${accentColor}, transparent)`;
-        el.style.borderColor = accentColor;
-      });
-      document.querySelectorAll('.feature-icon').forEach(el => {
-        el.style.borderColor = accentColor;
-        const rgb = parseInt(accentColor.slice(1), 16);
-        const r = (rgb >> 16) & 255;
-        const g = (rgb >> 8) & 255;
-        const b = rgb & 255;
-        el.style.background = `rgba(${r}, ${g}, ${b}, 0.15)`;
-      });
-      document.querySelectorAll('.pricing-card.featured').forEach(el => {
-        el.style.borderColor = accentColor;
-        const rgb = parseInt(accentColor.slice(1), 16);
-        const r = (rgb >> 16) & 255;
-        const g = (rgb >> 8) & 255;
-        const b = rgb & 255;
-        el.style.background = `rgba(${r}, ${g}, ${b}, 0.05)`;
-      });
-      document.querySelectorAll('.tweaks-button').forEach(el => {
-        el.style.background = accentColor;
-      });
-    });
+    function lighten(hex) {
+      const { r, g, b } = hexToRgb(hex);
+      const l = v => Math.min(255, v + Math.round((255 - v) * 0.15));
+      return '#' + [l(r), l(g), l(b)].map(v => v.toString(16).padStart(2, '0')).join('');
+    }
 
-    // Typography Controller
-    document.querySelectorAll('input[name="typography"]').forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        const typo = e.target.value;
-        let fontFamily = '"Georgia", serif';
-        let fontWeight = '300';
-        
-        if (typo === 'modern') {
-          fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-          fontWeight = '600';
-        } else if (typo === 'playful') {
-          fontFamily = '"Abril Fatface", serif';
-          fontWeight = '700';
-        }
-        
-        document.querySelectorAll('h1, h2, .price, .logo, .footer-signature').forEach(el => {
-          el.style.fontFamily = fontFamily;
-          el.style.fontWeight = fontWeight;
+    function applyVars(vars) {
+      const root = document.documentElement;
+      Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
+    }
+
+    function TweaksApp() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      React.useEffect(() => { applyVars(MOODS[t.mood] || MOODS.luxury); }, [t.mood]);
+
+      React.useEffect(() => {
+        const { r, g, b } = hexToRgb(t.accent);
+        applyVars({
+          '--pg-accent':     t.accent,
+          '--pg-accent-h':   lighten(t.accent),
+          '--pg-accent-rgb': `${r},${g},${b}`,
+          '--pg-hero-glow':  `rgba(${r},${g},${b},.05)`,
         });
-      });
-    });
+      }, [t.accent]);
+
+      React.useEffect(() => { applyVars(TYPO[t.typography] || TYPO.georgia); }, [t.typography]);
+
+      return (
+        <TweaksPanel title="Tweaks">
+          <TweakSection label="Mood" />
+          <TweakRadio
+            label=""
+            value={t.mood}
+            options={[{ value: 'luxury', label: 'Luxury' }, { value: 'playful', label: 'Playful' }]}
+            onChange={v => setTweak('mood', v)}
+          />
+          <TweakSection label="Accent Color" />
+          <TweakColor
+            label=""
+            value={t.accent}
+            options={['#d4af37', '#c0c0c0', '#b87333', '#e8e8e8']}
+            onChange={v => setTweak('accent', v)}
+          />
+          <TweakSection label="Typography" />
+          <TweakRadio
+            label=""
+            value={t.typography}
+            options={[{ value: 'georgia', label: 'Georgia' }, { value: 'modern', label: 'Modern' }, { value: 'playful', label: 'Playful' }]}
+            onChange={v => setTweak('typography', v)}
+          />
+        </TweaksPanel>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
   </script>
 </body>
 </html>

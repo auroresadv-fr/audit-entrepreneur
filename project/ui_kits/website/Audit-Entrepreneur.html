@@ -1,0 +1,2172 @@
+<!-- @dsCard group="Products" viewport="600x900" name="Audit Entrepreneur" -->
+<!DOCTYPE html>
+<html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Entrepreneur | PERSONA BUSINESS LAB</title>
+  <link rel="stylesheet" href="../../styles.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      font-weight: 300;
+      min-height: 100vh;
+      transition: background 300ms ease, color 300ms ease;
+    }
+
+    .wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .screen.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Brand & Headers */
+    .brand {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #d4af37;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .audit-focus {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d4af37;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 20px;
+      padding: 4px 12px;
+      margin-bottom: 1.25rem;
+    }
+
+    .audit-intro {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      margin: 2rem 0;
+    }
+
+    /* Points */
+    .points {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 2.5rem;
+    }
+
+    .point {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: #e8e8e8;
+      line-height: 1.6;
+    }
+
+    .point-num {
+      font-size: 11px;
+      font-weight: 500;
+      color: #d4af37;
+      min-width: 18px;
+      padding-top: 2px;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      margin-bottom: 2rem;
+    }
+
+    .progress-track {
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 1px;
+    }
+
+    .progress-fill {
+      height: 2px;
+      background: #d4af37;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    /* Question */
+    .question {
+      font-size: 16px;
+      font-weight: 400;
+      color: #e8e8e8;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-context {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      padding: 12px 14px;
+      background: #0f0f0f;
+      border-left: 3px solid #d4af37;
+      border-radius: 8px;
+    }
+
+    /* Options */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 2rem;
+      pointer-events: auto;
+      z-index: 20;
+      position: relative;
+    }
+
+    .option {
+      padding: 14px 16px;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #e8e8e8;
+      line-height: 1.5;
+      background: #0f0f0f;
+      transition: all 300ms ease;
+      display: flex;
+      pointer-events: auto;
+      z-index: 10;
+      position: relative;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .option span {
+      color: #e8e8e8;
+      display: block;
+    }
+
+    .option:hover {
+      border-color: #d4af37;
+      background: rgba(212, 175, 55, 0.05);
+      transform: translateX(4px);
+    }
+
+    .option:hover span {
+      color: #e8e8e8;
+    }
+
+    .option.selected {
+      border-color: #d4af37;
+      background: #d4af37;
+      color: #0a0a0a;
+      font-weight: 600;
+    }
+
+    .option.selected span {
+      color: #0a0a0a;
+    }
+
+    .option-help {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: #333;
+      color: #e8e8e8;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: help;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .option-help:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d4af37;
+      color: #0a0a0a;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      white-space: nowrap;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes growBar {
+      from { width: 0; }
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: .875rem 2rem;
+      border: 1px solid #1a1a1a;
+      border-radius: 28px;
+      background: transparent;
+      color: #e8e8e8;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      cursor: pointer;
+      transition: all 300ms ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    .btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: #d4af37;
+      color: #0a0a0a;
+      border-color: #d4af37;
+    }
+
+    .btn-primary:hover {
+      background: #e8c547;
+      border-color: #e8c547;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .btn-outline-full {
+      width: 100%;
+      padding: .875rem 2rem;
+      border: 1px solid #1a1a1a;
+      border-radius: 28px;
+      background: transparent;
+      color: #e8e8e8;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      cursor: pointer;
+      transition: all 300ms ease;
+    }
+
+    .btn-outline-full:hover {
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    /* Sphere */
+    .sphere-container {
+      perspective: 1000px;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .sphere {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d4ff, #d4af37);
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.35), inset -20px -20px 60px rgba(0, 0, 0, 0.15), inset 20px 20px 60px rgba(255, 255, 255, 0.2);
+      animation: sphereFloat 6s ease-in-out infinite;
+      position: relative;
+    }
+
+    .sphere::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 30%;
+      height: 30%;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(8px);
+    }
+
+    @keyframes sphereFloat {
+      0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-20px) rotateX(10deg) rotateY(10deg); }
+    }
+
+    /* Results */
+    .result-block {
+      background: #0f0f0f;
+      border: 1px solid #1a1a1a;
+      border-radius: 20px;
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      animation: slideIn 0.5s ease;
+    }
+
+    .result-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d4af37;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-name {
+      font-family: 'Georgia', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .result-desc {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.75;
+    }
+
+    /* Axis */
+    .axis-block {
+      background: #0f0f0f;
+      border: 1px solid #1a1a1a;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      animation: slideIn 0.5s ease 0.1s both;
+    }
+
+    .axis-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d4af37;
+      margin-bottom: 0.5rem;
+    }
+
+    .axis-name {
+      font-family: 'Georgia', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .axis-desc {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .axis-bars-header {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .axis-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .axis-bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .axis-bar-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #e8e8e8;
+      font-weight: 500;
+    }
+
+    .axis-bar-score {
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .axis-bar-track {
+      height: 8px;
+      background: #1a1a1a;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .axis-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Color gradient based on score */
+    .axis-bar-fill.score-1 { background: #FF4444; }
+    .axis-bar-fill.score-2 { background: #FF6B4D; }
+    .axis-bar-fill.score-3 { background: #FF8855; }
+    .axis-bar-fill.score-4 { background: #FFA55E; }
+    .axis-bar-fill.score-5 { background: #FFC266; }
+    .axis-bar-fill.score-6 { background: #FFD975; }
+    .axis-bar-fill.score-7 { background: #FFF080; }
+    .axis-bar-fill.score-8 { background: #E5FF66; }
+    .axis-bar-fill.score-9 { background: #CCFF66; }
+    .axis-bar-fill.score-10 { background: #A8FF66; }
+    .axis-bar-fill.score-11 { background: #88FF66; }
+    .axis-bar-fill.score-12 { background: #d4af37; }
+    .axis-bar-fill.score-13 { background: #e8c547; }
+    .axis-bar-fill.score-14 { background: #f0d968; }
+    .axis-bar-fill.score-15 { background: #f5e5a8; }
+    .axis-bar-fill.score-16 { background: #faf5d4; }
+
+    .axis-legend {
+      font-size: 11px;
+      color: #666;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    /* CTA */
+    .cta-block {
+      border-top: 1px solid #1a1a1a;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      animation: slideIn 0.5s ease 0.2s both;
+    }
+
+    .cta-title {
+      font-family: 'Georgia', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-desc {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-sep {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin: 10px 0;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1rem;
+      justify-content: center;
+    }
+
+    .share-btn {
+      padding: 8px 14px;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      background: #0f0f0f;
+      color: #e8e8e8;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 300ms ease;
+    }
+
+    .share-btn:hover {
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    /* Footer */
+    .archetypes-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .archetype-chip {
+      font-size: 12px;
+      font-weight: 500;
+      color: #d4af37;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 20px;
+      padding: 5px 12px;
+      letter-spacing: 0.01em;
+    }
+
+    .start-footer {
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* History screen */
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .history-item {
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 300ms ease;
+    }
+
+    .history-item:hover {
+      border-color: #d4af37;
+      background: rgba(212, 175, 55, 0.04);
+    }
+
+    .history-date {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .history-archetype {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8e8e8;
+    }
+
+    /* ===== ONBOARDING FORM ===== */
+    .form-block { margin-bottom: 1.75rem; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e8e8e8;
+      margin-bottom: 0.6rem;
+    }
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-family: inherit;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      background: #0f0f0f;
+      color: #e8e8e8;
+      transition: border-color 300ms ease, background 300ms ease;
+      -webkit-appearance: none;
+    }
+    .form-input:focus { outline: none; border-color: #d4af37; background: #0f0f0f; }
+    .form-input::placeholder { color: #666; }
+
+    .form-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .form-pill {
+      flex: 1 1 auto;
+      min-width: 90px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 500;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      background: #0f0f0f;
+      color: #e8e8e8;
+      cursor: pointer;
+      transition: all 300ms ease;
+    }
+    .form-pill:hover { border-color: #d4af37; color: #d4af37; }
+    .form-pill.selected {
+      background: linear-gradient(135deg, #d4af37, #b8942a);
+      border-color: transparent;
+      color: #0a0a0a;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+    }
+    .form-note {
+      font-size: 12px;
+      color: #aaa;
+      line-height: 1.6;
+      padding: 14px 16px;
+      background: rgba(212, 175, 55, 0.04);
+      border-left: 3px solid rgba(212, 175, 55, 0.3);
+      border-radius: 6px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    /* ===== NEXT SECTION ===== */
+    .next-section {
+      margin-top: 3rem;
+      padding: 2rem 1.5rem;
+      background: rgba(212, 175, 55, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 20px;
+      text-align: center;
+    }
+    .next-section-title {
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .next-section-desc {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== HEALTH & WELLBEING BLOCKS ===== */
+    .health-content, .wellbeing-content { margin: 2rem 0; }
+    .content-block { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid #1a1a1a; }
+    .content-block:last-child { border-bottom: none; }
+    .content-block-eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d4af37;
+      background: rgba(212, 175, 55, 0.08);
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+    }
+    .content-block-title {
+      font-family: 'Georgia', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .content-block-body { font-size: 15px; color: #aaa; line-height: 1.75; }
+    .content-block-body p { margin-bottom: 1rem; }
+    .content-block-body p:last-child { margin-bottom: 0; }
+    .content-block-body strong { color: #e8e8e8; font-weight: 600; }
+    .content-disclaimer {
+      margin-top: 1rem;
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic;
+      padding: 10px 14px;
+      background: #0f0f0f;
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    /* Phase intro (cycle, périménopause...) */
+    .phase-intro {
+      background: linear-gradient(135deg, rgba(180, 70, 100, 0.06), rgba(180, 100, 130, 0.06));
+      border: 1px solid rgba(180, 70, 100, 0.2);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .phase-intro-title {
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .phase-intro-body { font-size: 14px; color: #aaa; line-height: 1.75; }
+    .phase-list { margin-top: 1rem; display: grid; gap: 0.75rem; }
+    .phase-item {
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #aaa;
+    }
+    .phase-item strong { display: block; color: #ff8fb3; font-weight: 600; margin-bottom: 2px; }
+
+    .nav-full { display: flex; gap: 8px; margin-top: 2.5rem; flex-wrap: wrap; }
+    .nav-full .btn { flex: 1 1 auto; }
+
+    /* ===== TARIF DE LANCEMENT ===== */
+    .price-launch-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff9966;
+      background: linear-gradient(135deg, rgba(255, 153, 102, 0.1), rgba(255, 102, 51, 0.1));
+      border: 1px solid rgba(255, 153, 102, 0.25);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      animation: pulse-soft 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse-soft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .price-strike {
+      text-decoration: line-through;
+      opacity: 0.55;
+      font-weight: 400;
+      margin-left: 6px;
+      font-size: 0.85em;
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 2rem 1rem; }
+      h1 { font-size: 24px; }
+      .sphere-container { width: 120px; height: 120px; }
+      .result-name { font-size: 24px; }
+      .axis-name { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <!-- MODE CORRECTION -->
+    <div class="screen" id="screen-correction-mode">
+      <div class="brand">PERSONA BUSINESS LAB</div>
+      <h1>Mode Correction</h1>
+      <p style="font-size: 15px; color: #aaa; margin: 2rem 0; line-height: 1.6;">Choisissez un archétype pour tester les résultats et les recommandations sans refaire l'audit complet.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 2rem 0;">
+        <button class="form-pill" onclick="auditApp.loadCorrectionArchetype('Le Pionnier')">Le Pionnier</button>
+        <button class="form-pill" onclick="auditApp.loadCorrectionArchetype('L\'Architecte')">L'Architecte</button>
+        <button class="form-pill" onclick="auditApp.loadCorrectionArchetype('Le Porteur')">Le Porteur</button>
+        <button class="form-pill" onclick="auditApp.loadCorrectionArchetype('Le Bâtisseur')">Le Bâtisseur</button>
+        <button class="form-pill" onclick="auditApp.loadCorrectionArchetype('Le Stratège')">Le Stratège</button>
+      </div>
+
+      <button class="btn btn-primary btn-full" onclick="auditApp.showScreen('screen-intro')" style="margin-top: 2rem;">Retour à l'audit normal</button>
+    </div>
+
+    <!-- INTRO -->
+    <div class="screen active" id="screen-intro">
+      <div class="brand">PERSONA BUSINESS LAB</div>
+      <h1>Audit entrepreneur solo &amp; TPE</h1>
+      <p class="subtitle">Identifie ton archétype et ton axe prioritaire. Gratuit, 10 minutes.</p>
+      <p class="audit-focus">Axé organisation et structure</p>
+      <p class="audit-intro">Entre les clients, l'admin et tout le reste, difficile de prendre du recul. Tu sais ce que tu fais, mais sais-tu ce qui te coûte le plus ?</p>
+      <div class="divider"></div>
+      <div class="points">
+        <div class="point"><span class="point-num">01</span><span>39 questions structurées en 10 thèmes clés</span></div>
+        <div class="point"><span class="point-num">02</span><span>Un archétype personnel parmi 5 profils</span></div>
+        <div class="point"><span class="point-num">03</span><span>Ton axe prioritaire identifié automatiquement</span></div>
+        <div class="point"><span class="point-num">04</span><span>Bilan détaillé optionnel de 3 à 6 pages</span></div>
+      </div>
+      <div class="archetypes-row">
+        <span class="archetype-chip">Le Pionnier</span>
+        <span class="archetype-chip">L'Architecte</span>
+        <span class="archetype-chip">Le Porteur</span>
+        <span class="archetype-chip">Le Bâtisseur</span>
+        <span class="archetype-chip">Le Stratège</span>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="auditApp.goToOnboarding()">Démarrer mon audit</button>
+      <p class="start-footer">Aucune inscription requise, juste 10 minutes pour te connaître.</p>
+    </div>
+
+    <!-- ONBOARDING (Rubrique 0) -->
+    <div class="screen" id="screen-onboarding">
+      <div class="brand">Avant de commencer</div>
+      <h1>Faisons connaissance</h1>
+      <p class="subtitle">Trois infos rapides pour personnaliser tes recommandations bien-être à la fin de l'audit. Ces données restent sur ton appareil.</p>
+
+      <div class="form-block">
+        <label class="form-label" for="user-prenom">Ton prénom</label>
+        <input type="text" id="user-prenom" class="form-input" placeholder="Ex. Camille" autocomplete="given-name">
+      </div>
+
+      <div class="form-block">
+        <div class="form-label">Ton statut</div>
+        <div class="form-options" id="form-statut">
+          <button type="button" class="form-pill" data-value="auto-entrepreneur">Auto-entrepreneur-e</button>
+          <button type="button" class="form-pill" data-value="tpe">TPE</button>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <label class="form-label" for="user-metier">Ton métier ou secteur d'activité</label>
+        <input type="text" id="user-metier" class="form-input" placeholder="Ex. Consultant en marketing" autocomplete="off">
+      </div>
+
+      <div class="form-block" id="form-fonction-block" style="display: none;">
+        <label class="form-label" for="user-fonction">Ta fonction dans la structure</label>
+        <input type="text" id="user-fonction" class="form-input" placeholder="Ex. Dirigeante, responsable marketing" autocomplete="off">
+      </div>
+
+      <div class="form-block">
+        <div class="form-label">Tu es</div>
+        <div class="form-options" id="form-sexe">
+          <button type="button" class="form-pill" data-value="femme">Femme</button>
+          <button type="button" class="form-pill" data-value="homme">Homme</button>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <div class="form-label">Ta tranche d'âge</div>
+        <div class="form-options" id="form-age">
+          <button type="button" class="form-pill" data-value="18-35">18 - 35 ans</button>
+          <button type="button" class="form-pill" data-value="35-40">35 - 40 ans</button>
+          <button type="button" class="form-pill" data-value="40-50">40 - 50 ans</button>
+          <button type="button" class="form-pill" data-value="50+">50 ans et plus</button>
+        </div>
+      </div>
+
+      <p class="form-note">Pourquoi ces infos ? Le cycle menstruel, la périménopause, la ménopause ou la post-ménopause changent profondément l'énergie disponible, donc les bonnes habitudes a mettre en place. Côté hommes, la gestion du cortisol et de la testostérone influencent aussi tes recommandations. On adapte le contenu de fin d'audit a ta réalité.</p>
+
+      <div class="nav">
+        <button class="btn" onclick="auditApp.showScreen('screen-intro')">&#8592; Retour</button>
+        <button class="btn btn-primary" id="btn-start-quiz" onclick="auditApp.startAudit()" disabled="">Commencer le questionnaire</button>
+      </div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="screen" id="screen-questions">
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+        <div class="progress-meta">
+          <span id="theme-label"></span>
+          <span id="counter"></span>
+        </div>
+      </div>
+      <div class="question" id="question-text"></div>
+      <div class="question-context" id="question-context" style="display:none;"></div>
+      <div class="options" id="options"></div>
+      <div class="nav">
+        <button class="btn" onclick="auditApp.previousQuestion()" id="btn-prev" style="display:none;">&#8592; Retour</button>
+        <button class="btn btn-primary" id="btn-next" onclick="auditApp.nextQuestion()" disabled="" style="pointer-events: auto; z-index: 30; position: relative;">Suivant</button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="screen" id="screen-result">
+      <div class="brand">PERSONA BUSINESS LAB</div>
+      <h1>Ton résultat</h1>
+      <p class="subtitle" id="result-intro"></p>
+
+      <div class="sphere-container"><div class="sphere" id="result-sphere"></div></div>
+
+      <div class="result-block">
+        <div class="result-label">Ton archétype</div>
+        <div class="result-name" id="result-name"></div>
+        <div class="result-desc" id="result-desc"></div>
+      </div>
+
+      <div class="axis-block">
+        <div class="axis-label">Ton axe prioritaire</div>
+        <div class="axis-name" id="axis-name"></div>
+        <div class="axis-desc" id="axis-desc">Tu ne prospectes pas ou c'est difficile pour toi. Trouver des clients est une competence qui s'aligne avec ta facon d'etre.</div>
+        <div class="axis-bars-header">Scores détaillés par thème</div>
+        <div class="axis-bars" id="axis-bars"></div>
+        <div class="axis-legend">Plus la barre est courte, plus c'est une opportunite pour toi d'améliorer cet axe.</div>
+      </div>
+
+      <div class="share-buttons">
+        <button class="share-btn" onclick="auditApp.shareTwitter()">X Partager</button>
+        <button class="share-btn" onclick="auditApp.shareLinkedIn()">in Partager</button>
+        <button class="share-btn" onclick="auditApp.shareInstagram()">Instagram</button>
+        <button class="share-btn" onclick="auditApp.shareFacebook()">f Facebook</button>
+        <button class="share-btn" onclick="auditApp.exportPDF()">PDF</button>
+      </div>
+
+      <div class="next-section">
+        <div class="next-section-title">Et ton bien-être dans tout ça ?</div>
+        <div class="next-section-desc">Ton archétype dit beaucoup de comment tu travailles, mais il influence aussi comment tu te sens. Découvre les habitudes santé adaptées à ton profil.</div>
+
+        <!-- Apercu bien-etre -->
+        <div id="wellbeing-preview" style="margin: 2rem 0; padding: 1.5rem; background: transparent; border-radius: 12px;">
+          <div id="wellbeing-preview-content" style="font-size: 14px; color: #aaa; line-height: 1.6;"></div>
+          <div style="margin-top: 1rem; font-size: 12px; color: #666; font-style: italic;">Aperçu de tes recommandations santé -- accès complet après déblocage</div>
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="auditApp.goToPaywall()">Voir mes recommandations santé → &#8594;</button>
+      </div>
+
+      <!-- Mention partage reseau social (partie gratuite) -->
+      <div style="margin-top: 3rem; padding: 2rem; background: rgba(212, 175, 55, 0.04); border-radius: 20px; text-align: center;">
+        <p style="font-size: 14px; color: #aaa; line-height: 1.6;">Tu peux partager ton profil sur les reseaux sociaux. Les boutons de partage sont disponibles sur ton ecran de resultats.</p>
+      </div>
+
+      <!-- Envoi automatique des resultats par mail -->
+      <div style="margin-top: 3rem; padding: 2rem; background: rgba(212, 175, 55, 0.04); border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15);">
+        <div style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 1rem;">Reçois tes résultats par mail</div>
+        <div style="display: flex; gap: 12px; margin-bottom: 1rem;">
+          <input type="email" id="result-email" placeholder="ton@email.com" class="form-input" style="flex: 1;">
+          <button class="btn btn-primary" onclick="auditApp.sendResultsByEmail()" style="white-space: nowrap;">Envoyer</button>
+        </div>
+        <p style="font-size: 12px; color: #666; margin: 0;">Nous ne partagerons jamais ton email. Promis.</p>
+      </div>
+
+      <div class="cta-block">
+        <div class="cta-title">Tu veux aller plus loin ?</div>
+        <div class="cta-desc">Un bilan personnalisé avec tes points forts et tes axes de progression, livré en 5 a 7 jours.</div>
+        <div class="cta-buttons" id="cta-buttons-static">
+          <!-- Rendu dynamique par renderPriceCTA() au chargement de la page -->
+          <div class="cta-sep">ou</div>
+          <button class="btn-outline-full" onclick="auditApp.goToAppel()">Un appel gratuit pour discuter</button>
+        </div>
+        <div style="margin-top: 2rem; text-align: center;">
+          <a href="[lien audit complet]" class="btn btn-primary" style="display: inline-block; text-decoration: none; font-weight: 600; font-size: 13px;">Découvrir l'audit complet</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rubrique 1 : sante et habitudes (apercu gratuit) -->
+    <div class="screen" id="screen-health">
+      <div class="brand">Rubrique bien-être - Aperçu gratuit</div>
+      <h1 id="health-title">Santé et habitudes</h1>
+      <p class="subtitle" id="health-intro"></p>
+
+      <div class="health-content" id="health-content"></div>
+
+      <div style="margin: 2rem 0; padding: 2rem; background: rgba(212, 175, 55, 0.04); border-radius: 20px;">
+        <p style="font-size: 14px; color: #aaa; line-height: 1.6;">Ce n'est qu'un aperçu. Ton bilan complet detaille chaque axe de ton profil et t'explique exactement quoi mettre en place, selon qui tu es.</p>
+      </div>
+
+      <div class="share-buttons">
+        <button class="share-btn" onclick="auditApp.shareHealthTwitter()">X Partager</button>
+        <button class="share-btn" onclick="auditApp.shareHealthLinkedIn()">in Partager</button>
+        <button class="share-btn" onclick="auditApp.exportHealthPDF()">PDF</button>
+      </div>
+
+      <div class="nav-full">
+        <button class="btn" onclick="auditApp.backToResult()">&#8592; Retour au résultat</button>
+        <button class="btn btn-primary" onclick="auditApp.goToPaywall()">Voir mon bilan complet → &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Ecran paywall : acces conditionnel sante et bien-etre -->
+    <div class="screen" id="screen-paywall">
+      <div class="brand">Accès aux recommandations santé</div>
+      <h1>La suite de ton bilan</h1>
+      <p class="subtitle">Les recommandations santé et bien-être adaptées à ton profil font partie de l'audit complet.</p>
+
+      <div style="margin: 2rem 0; padding: 2rem; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 20px;">
+        <h3 style="font-size: 18px; font-weight: 300; font-family: 'Georgia', serif; color: #fff; margin-bottom: 1rem;">Qu'est-ce que tu vas découvrir ?</h3>
+        <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 14px; color: #aaa; line-height: 1.6;">
+          <div style="display: flex; gap: 12px;">
+            <span style="min-width: 20px; color: #d4af37;">&#10003;</span>
+            <span><strong style="color: #e8e8e8;">Santé et habitudes</strong> : les signaux à surveiller pour toi, tes habitudes cles a installer, les soutiens naturels adaptes à ton profil.</span>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <span style="min-width: 20px; color: #d4af37;">&#10003;</span>
+            <span><strong style="color: #e8e8e8;">Bien-être selon ta phase de vie</strong> : si tu es femme, les spécificités de ta phase (cycle, périménopause, ménopause), si tu es homme, l'équilibre hormonal qui s'adapte a ton age.</span>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <span style="min-width: 20px; color: #d4af37;">&#10003;</span>
+            <span><strong style="color: #e8e8e8;">Contenu personnalisé</strong> : tout est croisé avec ton archétype entrepreneurial. Autre personne, autre contenu.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question reseaux sociaux sur l'ecran paywall -->
+      <div style="margin: 2rem 0; padding: 2rem; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 20px;">
+        <div style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 1.5rem;">As-tu des réseaux sociaux ou un site pour ton business ?</div>
+        <div style="display: flex; gap: 12px; margin-bottom: 1.5rem;">
+          <button type="button" data-paywall-socials="oui" style="flex: 1; padding: 12px; border: 1px solid #1a1a1a; background: #0f0f0f; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; color: #e8e8e8; transition: all 300ms ease;" onclick="auditApp.togglePaywallSocials('oui')">Oui</button>
+          <button type="button" data-paywall-socials="non" style="flex: 1; padding: 12px; border: 1px solid #1a1a1a; background: #0f0f0f; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500; color: #e8e8e8; transition: all 300ms ease;" onclick="auditApp.togglePaywallSocials('non')">Non</button>
+        </div>
+
+        <div id="paywall-socials-fields" style="display: none; display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">Site internet</label>
+            <input type="url" id="paywall-social-site" class="form-input" placeholder="https://monsite.com">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">Instagram</label>
+            <input type="text" id="paywall-social-instagram" class="form-input" placeholder="@mon_compte">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">Facebook</label>
+            <input type="text" id="paywall-social-facebook" class="form-input" placeholder="Lien ou nom de page">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">Blog</label>
+            <input type="url" id="paywall-social-blog" class="form-input" placeholder="https://monblog.com">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">Threads</label>
+            <input type="text" id="paywall-social-threads" class="form-input" placeholder="@mon_compte">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">LinkedIn</label>
+            <input type="text" id="paywall-social-linkedin" class="form-input" placeholder="Lien ou nom">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">TikTok</label>
+            <input type="text" id="paywall-social-tiktok" class="form-input" placeholder="@mon_compte">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 6px;">YouTube</label>
+            <input type="text" id="paywall-social-youtube" class="form-input" placeholder="Lien ou nom de chaine">
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-full" style="margin-top: 2.5rem;">
+        <button class="btn" onclick="auditApp.backToResult()">&#8592; Retour au résultat</button>
+        <button class="btn btn-primary" onclick="auditApp.saveSocialsAndProceed()">Débloquer pour 92 &#8364; &#8594;</button>
+      </div>
+    </div>
+
+
+    <!-- Rubrique 2 : bien-etre (conditionnel) -->
+    <div class="screen" id="screen-wellbeing">
+      <div class="brand">Rubrique bien-être - 2/2</div>
+      <h1 id="wellbeing-title">Bien-être selon ta phase de vie</h1>
+      <p class="subtitle" id="wellbeing-intro"></p>
+
+      <div class="wellbeing-content" id="wellbeing-content"></div>
+
+      <div class="share-buttons">
+        <button class="share-btn" onclick="auditApp.shareWellbeingTwitter()">X Partager</button>
+        <button class="share-btn" onclick="auditApp.shareWellbeingLinkedIn()">in Partager</button>
+        <button class="share-btn" onclick="auditApp.exportWellbeingPDF()">PDF</button>
+      </div>
+
+      <div class="nav-full">
+        <button class="btn" onclick="auditApp.goToHealth()">&#8592; Retour santé</button>
+        <button class="btn btn-primary" onclick="auditApp.backToResult()">Revenir au résultat</button>
+      </div>
+    </div>
+
+  <script src="audit-data/health-content.js"></script>
+  <script src="audit-data/wellbeing-women-18-35.js"></script>
+  <script src="audit-data/wellbeing-women-35-50.js"></script>
+  <script src="audit-data/wellbeing-women-40-50.js"></script>
+  <script src="audit-data/wellbeing-women-50plus.js"></script>
+  <script src="audit-data/wellbeing-men.js"></script>
+  <script src="audit-data/prospection-content.js"></script>
+
+  <footer style="margin-top: 6rem; padding: 2rem; text-align: center; font-size: 11px; color: #666;">
+    Outil protégé -- reproduction et copie interdites. &copy; PERSONA BUSINESS LAB by Aurore S
+  </footer>
+  <script>
+    const themes = [
+      {name:"Administratif", questions:[
+        {q:"Tes tâches administratives, comment tu les gères ?", ctx:"Factures, contrats, déclarations, documents officiels.", opts:["Je les fais au fur et à mesure, j'ai un système","Je les regroupe une fois par semaine","Je les fais en retard, quand c'est urgent","C'est le chaos, je perds du temps"]},
+        {q:"Quand une tâche arrive, tu fais quoi ?", ctx:"Document à signer, déclaration à remplir, etc.", opts:["Je la mets dans un système, je sais où elle en est","Je la note mais sans vraie visibilité","Je la garde en tête","Elle se perd souvent"]},
+        {q:"Temps par semaine sur l'administratif ?", ctx:"Estimation honnête de votre temps réel.", opts:["< 1h, c'est géré","1-3h, c'est raisonnable","3-6h, ça prend trop de place","> 6h ou je ne sais pas"]},
+        {q:"Comment tu te sens face aux obligations admin ?", ctx:"Votre ressenti émotionnel quand vous les affrontez.", opts:["Serein·e, c'est sous contrôle","Ça me pèse un peu","C'est stressant régulièrement","C'est de l'anxiété permanente"]}
+      ]},
+      {name:"Délégation", questions:[
+        {q:"Tu délègues des tâches ?", ctx:"À un assistant, freelance, prestataire, collègue...", opts:["Oui, c'est structuré et organisé","Oui, mais ponctuellement selon les besoins","Rarement, quand je suis vraiment débordé·e","Non, je fais tout moi-même"]},
+        {q:"Quand tu confies une tâche, ça se passe comment ?", ctx:"La clarté du brief, le suivi, la confiance...", opts:["Brief clair, suivi, validation : ça roule","Explication à l'oral, ça dépend","Je dois réexpliquer souvent, je relis tout","Je ne délègue pas, j'ai peur"]},
+        {q:"Qu'est-ce qui t'empêche de déléguer plus ?", ctx:"Honnêtement, qu'est-ce qui te bloque ?", opts:["Rien, j'ai trouvé l'équilibre","Le budget, je ne sais pas si c'est rentable","La confiance, j'ai du mal à lâcher","C'est plus rapide de le faire moi-même"]},
+        {q:"Si tu pouvais déléguer une chose demain ?", ctx:"Une seule tâche qui te libérerait vraiment.", opts:["Rien de prioritaire","L'administratif ou la comptabilité","Les réseaux sociaux","Tout ce qui n'est pas ma zone de génie"]}
+      ]},
+      {name:"Organisation", questions:[
+        {q:"Ton agenda, c'est comment ?", ctx:"La structure de votre planning hebdomadaire.", opts:["Structuré, plages dédiées pour chaque type","J'ai un agenda mais je ne le respecte pas","Surtout l'urgence et les priorités du moment","Je gère au fil de l'eau, pas d'âgenda"]},
+        {q:"Tes mails ?", ctx:"Comment vous traitez votre boîte email.", opts:["Organisée, dossiers clairs, temps défini","Je lis au fur et à mesure, c'est en désordre","Je réponds quand je peux, certains sans réponse","C'est du stress, je ne sais plus où j'en suis"]},
+        {q:"Tes documents (contrats, devis, factures...) ?", ctx:"Stockage, organisation, retrouvabilité.", opts:["Classement clair, je retrouve en < 1 minute","Il y a un classement mais pas à jour","C'est éparpillé, je cherche longtemps","C'est le bazar, je perds du temps"]},
+        {q:"Tu as un CRM ou outil de suivi clients ?", ctx:"Pour suivre prospects et clients.", opts:["Oui, à jour, je m'en sers vraiment","Oui, mais pas toujours à jour","Excel ou dans ma tête","Non, pas de suivi structuré"]}
+      ]},
+      {name:"Mindset", questions:[
+        {q:"Ton état d'esprit par rapport à ton business ?", ctx:"Alignement, motivation, clarté de direction.", opts:["Aligné·e, motivé·e, je sais où je vais","Bien globalement, des hauts et bas","Souvent fatigué·e, je doute","Je suis à bout, obligation plus qu'envie"]},
+        {q:"Face aux imprévus, tu réagis comment ?", ctx:"Votre capacité à rebondir et vous ajuster.", opts:["Je prends du recul, j'analyse, j'ajuste","Ça me déstabilise mais je rebondis vite","Je rumine, ça impacte la productivité","Ça me coûte beaucoup d'énergie"]},
+        {q:"Ton rapport à la réussite et à la performance ?", ctx:"Vos objectifs, votre sévérité envers vous-même.", opts:["Objectifs réalistes, je célèbre les avancées","J'ai des objectifs mais je suis trop sévère","Je compare aux autres, ça m'affecte","Pas vraiment d'objectifs clairs"]},
+        {q:"La charge mentale liée au business ?", ctx:"Le poids mental que ça représente.", opts:["Gérable, j'ai des routines qui aident","Présente mais je gère","Lourde, ça déborde souvent sur ma vie perso","Épuisante, je pense au business partout"]}
+      ]},
+      {name:"Impact vie perso", questions:[
+        {q:"Le business prend quelle place dans ta vie perso ?", ctx:"Équilibre entre travail et vie personnelle.", opts:["Équilibrée, frontières claires","Le business déborde parfois mais je préserve l'essentiel","Prend souvent le dessus","Occupe tout, plus de vie en dehors"]},
+        {q:"Tes soirées et week-ends ?", ctx:"Votre capacité à décrocher vraiment.", opts:["Je décroche, je recharge","Je décroche en théorie mais je consulte les mails","Je travaille régulièrement le soir/week-end","La notion de week-end n'existe plus"]},
+        {q:"Tes proches et ton activité ?", ctx:"Comment ta famille/amis vivent ton business.", opts:["Ils me soutiennent, je suis épanoui·e","Ils comprennent mais disent que je travaille trop","C'est une tension régulière","Je sens que ça crée une distance"]},
+        {q:"Tu prends soin de toi (sport, repos, loisirs) ?", ctx:"Votre hygiène de vie et vos priorités.", opts:["Oui, c'est non négociable","J'essaie mais souvent sacrifié quand débordé·e","Rarement, pas le temps/l'énergie","Non, je fonctionne en survie"]}
+      ]},
+      {name:"Finance", questions:[
+        {q:"Visibilité sur ta situation financière ?", ctx:"CA, charges, bénéfice net : vous le savez ?", opts:["Oui, je suis régulièrement mes chiffres, je sais où j'en suis","J'ai une idée mais pas suivi rigoureux","Je regarde ce qui entre, c'est tout","Non, c'est ma zone aveugle"]},
+        {q:"Tes devis et factures ?", ctx:"Logiciel, modèles, relances automatisées...", opts:["Logiciel dédié, modèles prêts, relances auto","J'ai un outil mais ne l'utilise pas toujours","Je fais manuellement, ça prend du temps","C'est irrégulier, j'oublie de facturer"]},
+        {q:"Tu sais pour la facturation électronique obligatoire ?", ctx:"Plateforme agréée, prise en charge par l'outil...", opts:["Oui, je suis déjà équipé·e","Oui, j'en ai entendu parler mais pas encore","Vaguement, je ne sais pas ce que ça implique","Non, première fois que j'en entends parler"]},
+        {q:"Relances en cas d'impayé ou retard ?", ctx:"Votre processus pour les paiements en retard.", opts:["Process clair, relances auto/planifiées","Je relance manuellement quand je m'en souviens","J'évite de relancer, c'est inconfortable","Pas de process, les impayés me stressent"]}
+      ]},
+      {name:"Automatisation", questions:[
+        {q:"Tu as mis en place des automatisations ?", ctx:"Emails, relances, prise RDV, facturation...", opts:["Oui, plusieurs processus auto","Quelques automatisations mais partiel","J'ai essayé mais rien de stable","Non, je fais tout manuellement"]},
+        {q:"Prise de rendez-vous avec prospects/clients ?", ctx:"Comment ça se passe concrètement.", opts:["Lien de réservation en ligne, c'est auto","Parfois un outil mais pas systématique","On s'échange des mails/messages","C'est long et ça prend trop de temps"]},
+        {q:"Tes outils parlent entre eux ?", ctx:"CRM, facturation, communication, stockage...", opts:["Oui, écosystème cohérent, peu de ressaisie","Certains connectés mais reste du manuel","Non, chaque outil indépendant","Je n'ai pas réfléchi à ça"]},
+        {q:"Face à une tâche répétitive ?", ctx:"Votre réflexe naturel.", opts:["Je cherche comment l'automatiser","Je crée un modèle/template","Je la fais pareil sans optimiser","Je la fais comme je peux"]}
+      ]},
+      {name:"Process", questions:[
+        {q:"Nouveau client, tu as un parcours ?", ctx:"Onboarding, documents, étapes claires...", opts:["Oui, structuré, documents prêts","J'ai une trame mais pas formalisée","Au cas par cas, chaque fois zéro","Non, c'est du flou au démarrage"]},
+        {q:"Livraison de tes prestations ?", ctx:"Est-ce que ça suit un processus défini.", opts:["Oui, étapes claires, délais respectés","J'ai une façon mais pas toujours pareil","Selon le moment, sans trame fixe","C'est improvisé, on gère l'urgence"]},
+        {q:"Modèles prêts (contrats, briefs, templates...) ?", ctx:"Une bibliothèque réutilisable.", opts:["Oui, j'ai une bibliothèque à jour","J'en ai quelques-uns mais je recrée","Je n'ai pas de modèles vraiment","Non, pas le temps de structurer"]},
+        {q:"Si tu confiais le business demain ?", ctx:"Est-ce qu'on pourrait s'en sortir sans toi ?", opts:["Oui, procédures écrites, tout accessible","Partiellement, certaines choses documentées","Difficilement, beaucoup dans ma tête","Non, tout dans ma tête"]}
+      ]},
+      {name:"Visibilité & Communication", questions:[
+        {q:"Ta présence en ligne reflète ce que tu fais ?", ctx:"Site, réseaux, profils : tout cohérent et à jour ?", opts:["Oui, cohérent, à jour, aligné","Globalement mais certaines choses datent","Pas vraiment, ça date, je n'ai pas eu le temps","Non, ça ne reflète pas ce que je fais"]},
+        {q:"Tu communiques régulièrement ?", ctx:"Réseaux, newsletter, contenu...", opts:["Oui, rythme régulier et plan","Je publie selon l'inspiration","Rarement, manque de temps","Je ne communique presque pas"]},
+        {q:"Un prospect te découvre, il comprend quoi ?", ctx:"Clarté du message et du positionnement.", opts:["Oui, message clair, positionnement lisible","Globalement mais du flou sur certains trucs","Pas toujours, manque de clarté","Non, c'est confus"]},
+        {q:"Tu as une stratégie de communication ?", ctx:"Pour attirer des clients durablement.", opts:["Oui, stratégie claire avec objectifs","J'ai des idées mais rien de structuré","Actions ponctuelles sans cohérence","Non, je communique quand j'y pense"]}
+      ]},
+      {name:"Prospection", questions:[
+        {q:"Comment tu trouves tes clients actuellement ?", ctx:"Bouche-à-oreille, réseaux, démarche active...", opts:["Bouche-à-oreille et recommandations, ça roule","Un mix de plusieurs sources","Je dois prospecter mais je repousse","Je ne sais pas vraiment comment ça se passe"]},
+        {q:"Tu as une approche définie pour prospecter ?", ctx:"Un processus, des outils, une stratégie.", opts:["Oui, j'ai une façon de faire qui marche","Une vague idée mais pas formalisée","Je fais au cas par cas","Pas vraiment, c'est improvisé"]},
+        {q:"La prospection te coûte de l'énergie ?", ctx:"Comment tu te sens par rapport à chercher des clients.", opts:["Non, c'est naturel pour moi","Un peu, mais ça va","Oui, beaucoup, c'est un blocage","Je ne sais pas, je ne le fais pas"]},
+        {q:"Tes résultats de prospection ?", ctx:"Combien de prospects convertis en clients chaque mois.", opts:["Je ferme régulièrement de nouveaux clients","C'est inégal mais ça arrive","C'est rare et difficile","Je ne fais pas vraiment de prospection"]}
+      ]}
+    ];
+
+    const archetypes = [
+      {range:[36,65], name:"Le Pionnier", desc:"Tu avances vite, tu testes tout, mais rien ne tient vraiment. Ton énergie est une force, c'est la structure qui manque.", gradient:"linear-gradient(135deg, #FF6B35, #FF8C42)"},
+      {range:[66,85], name:"L'Architecte", desc:"Tout est dans ta tête, très peu est formalisé. Tu as une vision claire mais elle reste invisible. C'est l'effort de formalisation qui va t'en coûter ou t'en faire gagner.", gradient:"linear-gradient(135deg, #F77F00, #FCBF49)"},
+      {range:[86,100], name:"Le Porteur", desc:"Tu portes tout, seul·e. Ton business tourne parce que tu t'y consacres entièrement, mais ta vie perso absorbe le surcoût. La délégation est ton levier.", gradient:"linear-gradient(135deg, #D62828, #F77F00)"},
+      {range:[101,120], name:"Le Bâtisseur", desc:"Tu as commencé à structurer. Certains axes sont solides, d'autres ont besoin de fondations. Tu es en transition, systématise ce qui marche.", gradient:"linear-gradient(135deg, #06A77D, #1DB584)"},
+      {range:[121,144], name:"Le Stratège", desc:"Tes systèmes tournent, tu délègues, tu pilotes. Tu n'es plus dans le business, tu travailles sur le business. C'est le signe que ta construction est juste.", gradient:"linear-gradient(135deg, #d4af37, #00d4ff)"}
+    ];
+
+    const axisDescs = {
+      "Administratif":"Tes tâches admin ne sont pas sous contrôle. Mets en place un système simple, tu libérerais des heures chaque semaine.",
+      "Délégation":"Tu portes trop de choses seul·e. Déléguer ce qui sort de ta zone de génie est probablement ton levier le plus rapide pour respirer.",
+      "Organisation":"Ton quotidien manque de structure. Agenda clair, e-mails organisés, documents classés : ça changerait ton rapport au travail.",
+      "Mindset":"Ton état d'esprit mérite attention. Un business sain se construit avec une tête reposée, c'est souvent le premier vrai chantier.",
+      "Impact vie perso":"Ton business déborde sur ta vie perso de façon non-soutenable. Poser des frontières est une condition de durabilité.",
+      "Finance":"Ta gestion financière a besoin de cadre. Visibilité des chiffres, outils adaptés, relances auto : c'est la base.",
+      "Automatisation":"Tu fais trop de choses manuellement. Quelques automatisations bien choisies te rendraient des heures sans effort.",
+      "Process":"Tes façons de travailler ne sont pas formalisées. Documenter tes process, même simplement, rend ton business moins dépendant de toi.",
+      "Visibilité & Communication":"Ta communication manque de régularité ou de clarté. Sans visibilité cohérente, attirer des clients reste une lutte permanente.",
+      "Prospection":"Tu ne prospectes pas ou c'est difficile pour toi. Trouver des clients est une compétence qui s'aligne avec ta façon d'être."
+    };
+
+    // ===== CONFIG TARIFS =====
+    const LAUNCH_START = new Date('2026-06-05T00:00:00');
+    const LAUNCH_DURATION_DAYS = 21;
+    const PRICE_LAUNCH = 92;
+    const PRICE_REGULAR = 101;
+
+    function getPricing() {
+      const now = new Date();
+      const end = new Date(LAUNCH_START.getTime() + LAUNCH_DURATION_DAYS * 24 * 60 * 60 * 1000);
+      const msLeft = end - now;
+      const daysLeft = Math.ceil(msLeft / (24 * 60 * 60 * 1000));
+      const isLaunch = now >= LAUNCH_START && now < end;
+      return {
+        price: isLaunch ? PRICE_LAUNCH : PRICE_REGULAR,
+        isLaunch,
+        daysLeft: Math.max(0, daysLeft),
+        regularPrice: PRICE_REGULAR,
+        launchPrice: PRICE_LAUNCH
+      };
+    }
+
+    function renderPriceCTA() {
+      const p = getPricing();
+      if (p.isLaunch) {
+        return `
+          <div class="price-launch-badge">Prix de lancement : encore ${p.daysLeft} jour${p.daysLeft > 1 ? 's' : ''}</div>
+          <button class="btn btn-primary btn-full" onclick="auditApp.goToBilan()">Recevoir mon bilan : <strong>${p.launchPrice} €</strong> <span class="price-strike">${p.regularPrice} €</span></button>
+        `;
+      }
+      return `<button class="btn btn-primary btn-full" onclick="auditApp.goToBilan()">Recevoir mon bilan : ${p.regularPrice} €</button>`;
+    }
+
+    let current = 0;
+    let themeScores = Array(10).fill(0);
+    let answers = new Array(39).fill(null);
+    let selectedOption = null;
+    let currentArchetype = null;
+    let auditHistory = [];
+    let userInfo = { prenom: '', sexe: '', age: '', statut: '', metier: '', fonction: '' };
+
+    window.auditApp = {
+
+      initTheme() {
+        // Always dark mode in Aesop-Gold design
+      },
+
+      startAudit() {
+        if (!userInfo.prenom || !userInfo.sexe || !userInfo.age) {
+          this.goToOnboarding();
+          return;
+        }
+        this.saveSocialLinks();
+        this.saveUserInfo();
+
+        current = 0;
+        themeScores = Array(10).fill(0);
+        answers = new Array(39).fill(null);
+        selectedOption = null;
+        this.showScreen('screen-questions');
+        this.renderQuestion();
+      },
+
+      goToOnboarding() {
+        const prenomInput = document.getElementById('user-prenom');
+        if (prenomInput && userInfo.prenom) prenomInput.value = userInfo.prenom;
+        document.querySelectorAll('#form-sexe .form-pill').forEach(p => {
+          p.classList.toggle('selected', p.dataset.value === userInfo.sexe);
+        });
+        document.querySelectorAll('#form-age .form-pill').forEach(p => {
+          p.classList.toggle('selected', p.dataset.value === userInfo.age);
+        });
+        this.validateOnboarding();
+        this.showScreen('screen-onboarding');
+      },
+
+      validateOnboarding() {
+        const prenom = (document.getElementById('user-prenom').value || '').trim();
+        const sexe = document.querySelector('#form-sexe .form-pill.selected')?.dataset.value || '';
+        const age = document.querySelector('#form-age .form-pill.selected')?.dataset.value || '';
+        const statut = document.querySelector('#form-statut .form-pill.selected')?.dataset.value || '';
+        const metier = (document.getElementById('user-metier').value || '').trim();
+        const fonction = (document.getElementById('user-fonction').value || '').trim();
+
+        userInfo.prenom = prenom;
+        userInfo.sexe = sexe;
+        userInfo.age = age;
+        userInfo.statut = statut;
+        userInfo.metier = metier;
+        userInfo.fonction = fonction;
+
+        const fonctionBlock = document.getElementById('form-fonction-block');
+        if (fonctionBlock) {
+          fonctionBlock.style.display = statut === 'tpe' ? 'block' : 'none';
+        }
+
+        const socialsChoice = document.querySelector('#form-socials-choice .form-pill.selected')?.dataset.value || '';
+        const socialsFields = document.getElementById('form-socials-fields');
+        if (socialsFields) {
+          socialsFields.style.display = socialsChoice === 'oui' ? 'block' : 'none';
+        }
+
+        const btn = document.getElementById('btn-start-quiz');
+        const isValid = prenom && sexe && age && statut && metier && (statut !== 'tpe' || fonction);
+        btn.disabled = !isValid;
+      },
+
+      saveSocialLinks() {
+        const links = {};
+        const fields = ['site', 'instagram', 'facebook', 'blog', 'threads', 'linkedin', 'tiktok', 'youtube'];
+        fields.forEach(field => {
+          const input = document.getElementById('social-' + field);
+          if (input && input.value.trim()) {
+            links[field] = input.value.trim();
+          }
+        });
+        if (Object.keys(links).length > 0) {
+          userInfo.socialLinks = links;
+        }
+      },
+
+      saveUserInfo() {
+        try {
+          localStorage.setItem('auditUserInfo', JSON.stringify(userInfo));
+        } catch(e) {}
+      },
+
+      getThemeAndLocal(idx) {
+        let count = 0;
+        for (let i = 0; i < themes.length; i++) {
+          for (let j = 0; j < themes[i].questions.length; j++) {
+            if (count === idx) return {ti: i, qi: j};
+            count++;
+          }
+        }
+        return {ti:0, qi:0};
+      },
+
+      renderQuestion() {
+        const {ti, qi} = this.getThemeAndLocal(current);
+        const theme = themes[ti];
+        const q = theme.questions[qi];
+        const pct = Math.round((current / 39) * 100);
+
+        document.getElementById('progress').style.width = pct + '%';
+        document.getElementById('theme-label').textContent = theme.name + ' : ' + (qi + 1) + ' / ' + theme.questions.length;
+        document.getElementById('counter').textContent = (current + 1) + ' / 39';
+        document.getElementById('question-text').textContent = q.q;
+
+        const ctxEl = document.getElementById('question-context');
+        if (q.ctx) {
+          ctxEl.textContent = q.ctx;
+          ctxEl.style.display = 'block';
+        } else {
+          ctxEl.style.display = 'none';
+        }
+
+        const opts = document.getElementById('options');
+        opts.innerHTML = '';
+        q.opts.forEach((o, i) => {
+          const div = document.createElement('div');
+          div.className = 'option';
+          const textSpan = document.createElement('span');
+          textSpan.textContent = o;
+          div.appendChild(textSpan);
+          div.onclick = () => this.selectOption(i);
+          opts.appendChild(div);
+        });
+
+        selectedOption = null;
+        document.getElementById('btn-next').disabled = true;
+        document.getElementById('btn-next').textContent = current === 38 ? 'Voir mon résultat' : 'Suivant';
+        document.getElementById('btn-prev').style.display = current > 0 ? 'block' : 'none';
+      },
+
+      selectOption(i) {
+        selectedOption = i;
+        document.querySelectorAll('.option').forEach((o, idx) => {
+          o.classList.toggle('selected', idx === i);
+        });
+        document.getElementById('btn-next').disabled = false;
+      },
+
+      previousQuestion() {
+        if (current > 0) {
+          const {ti} = this.getThemeAndLocal(current);
+          themeScores[ti] -= (4 - selectedOption);
+          current--;
+          this.renderQuestion();
+        }
+      },
+
+      nextQuestion() {
+        if (selectedOption === null) return;
+        answers[current] = selectedOption;
+        const {ti} = this.getThemeAndLocal(current);
+        themeScores[ti] += (4 - selectedOption);
+        current++;
+        if (current >= 39) { this.showResult(); return; }
+        this.renderQuestion();
+      },
+
+      showResult() {
+        themeScores = Array(10).fill(0);
+        for (let i = 0; i < 36; i++) {
+          if (answers[i] !== null) {
+            const {ti} = this.getThemeAndLocal(i);
+            themeScores[ti] += (4 - answers[i]);
+          }
+        }
+        const total = themeScores.reduce((a, b) => a + b, 0);
+        let arch = archetypes[0];
+        for (const a of archetypes) {
+          if (total >= a.range[0] && total <= a.range[1]) { arch = a; break; }
+        }
+
+        const minScore = Math.min(...themeScores);
+        const minIdx = themeScores.indexOf(minScore);
+        const themeName = themes[minIdx].name;
+
+        currentArchetype = {arch, themeName, total, scores: [...themeScores]};
+
+        document.getElementById('result-intro').textContent = 'Score global : ' + total + ' / 144';
+        document.getElementById('result-name').textContent = arch.name;
+        document.getElementById('result-desc').textContent = arch.desc;
+
+        const sphere = document.getElementById('result-sphere');
+        sphere.style.background = arch.gradient;
+
+        const isStratege = arch.name === 'Le Stratège' || total >= 130;
+        const axisBlock = document.querySelector('.axis-block');
+        if (isStratege) {
+          axisBlock.style.display = 'none';
+        } else {
+          axisBlock.style.display = 'block';
+          document.getElementById('axis-name').textContent = themeName;
+          document.getElementById('axis-desc').textContent = axisDescs[themeName];
+        }
+
+        const barsContainer = document.getElementById('axis-bars');
+        barsContainer.innerHTML = '';
+        const sorted = themeScores.map((score, idx) => ({score, idx, name: themes[idx].name}))
+          .sort((a, b) => a.score - b.score);
+        const max = Math.max(...themeScores);
+
+        sorted.forEach((item, pos) => {
+          const barDiv = document.createElement('div');
+          barDiv.className = 'axis-bar-item';
+          const pct = Math.round((item.score / 16) * 100);
+          const scoreClass = `score-${item.score}`;
+          barDiv.innerHTML = `
+            <div class="axis-bar-label">
+              <span>${item.name}</span>
+              <span class="axis-bar-score">${item.score}/16</span>
+            </div>
+            <div class="axis-bar-track">
+              <div class="axis-bar-fill ${scoreClass}" style="width: ${pct}%; animation: growBar 0.8s ease ${pos * 0.1}s both;"></div>
+            </div>
+          `;
+          barsContainer.appendChild(barDiv);
+        });
+
+        if (arch.name === 'Le Stratège' || total >= 130) {
+          document.querySelector('.cta-block').innerHTML = `
+            <div style="text-align: center; padding: 2rem 0;">
+              <div style="font-size: 48px; margin-bottom: 1rem;">&#127919;</div>
+              <div style="font-size: 18px; font-weight: 300; font-family: 'Georgia', serif; margin-bottom: 1rem; color: #d4af37;">Bravo ! Tu es un vrai Stratege</div>
+              <div style="font-size: 28px; font-weight: 700; color: #d4af37; margin-bottom: 1rem;">${total} points</div>
+              <div style="font-size: 14px; line-height: 1.8; color: #aaa; margin-bottom: 2rem;">
+                <p>Ton audit le montre : tous tes systemes tournent, tu maitrises ta delegation, tu pilotes sans etre dans le quotidien. C'est rare et c'est excellent.</p>
+                <p style="margin-top: 1rem;">Meme a ce niveau, il peut y avoir des miniscules failles a ameliorer. Un audit detaille peut te les reveler.</p>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="btn btn-primary btn-full" onclick="auditApp.goToPaywall()">Voir mon audit detaille (${getPricing().isLaunch ? getPricing().launchPrice : getPricing().regularPrice}€)</button>
+                <button class="btn-outline-full" onclick="auditApp.goToAppel()">Discuter de ma strategie d'evolution</button>
+              </div>
+            </div>
+          `;
+        } else {
+          document.querySelector('.cta-block').innerHTML = `
+            <div class="cta-title">Tu veux aller plus loin ?</div>
+            <div class="cta-desc">Un bilan personnalisé avec tes points forts et tes axes de progression, livré en 5-7 jours.</div>
+            <div class="cta-buttons">
+              ${renderPriceCTA()}
+              <div class="cta-sep">ou</div>
+              <button class="btn-outline-full" onclick="auditApp.goToAppel()">Un appel gratuit pour discuter</button>
+            </div>
+          `;
+        }
+
+        auditHistory.unshift({
+          date: new Date().toLocaleDateString('fr-FR'),
+          archetype: arch.name,
+          score: total
+        });
+        localStorage.setItem('auditHistory', JSON.stringify(auditHistory));
+
+        this.generateWellbeingPreview(arch.name);
+        this.generateProspectionContent(arch.name);
+
+        this.showScreen('screen-result');
+      },
+
+      toggleDetailedScores() {
+        const detailedDiv = document.getElementById('detailed-scores');
+        if (detailedDiv.style.display === 'none') {
+          detailedDiv.style.display = 'block';
+          event.target.textContent = 'Masquer mes scores';
+        } else {
+          detailedDiv.style.display = 'none';
+          event.target.textContent = 'Voir mes scores détaillés';
+        }
+      },
+
+      shareInstagram() {
+        const archName = currentArchetype?.arch.name || 'un archétype';
+        const text = `Je viens de faire l'audit entrepreneur d'PERSONA BUSINESS LAB et je suis ${archName}. Et toi, tu es quel profil ? [lien vers l'audit]`;
+
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Texte copié ! Tu peux maintenant le coller sur Instagram.');
+        }).catch(() => {
+          alert('Texte à partager :\n\n' + text);
+        });
+      },
+
+      shareFacebook() {
+        const archName = currentArchetype?.arch.name || 'un archétype';
+        const text = `Je viens de faire l'audit entrepreneur d'PERSONA BUSINESS LAB et je suis ${archName}. Et toi, tu es quel profil ? [lien vers l'audit]`;
+
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=[lien%20vers%20l%27audit]&quote=${encodeURIComponent(text)}`;
+        window.open(facebookUrl, '_blank', 'width=600,height=400');
+      },
+
+      shareTwitter() {
+        const text = `Je suis ${currentArchetype.arch.name} Score: ${currentArchetype.total}/144. Découvrez votre archétype d'entrepreneur sur PERSONA BUSINESS LAB`;
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+      },
+
+      shareLinkedIn() {
+        alert('Partage LinkedIn (intégration à configurer avec votre URL');
+      },
+
+      exportPDF() {
+        const {arch, themeName, total} = currentArchetype;
+
+        const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; line-height: 1.6; background: #0a0a0a; color: #e8e8e8; }
+    h1 { color: #fff; margin-bottom: 20px; }
+    .score { font-size: 24px; color: #d4af37; font-weight: bold; margin: 20px 0; }
+    .archetype { background: #0f0f0f; padding: 20px; border-radius: 20px; margin: 20px 0; border: 1px solid #1a1a1a; }
+    .axis { background: #0f0f0f; padding: 20px; border-radius: 20px; margin: 20px 0; border-left: 4px solid #d4af37; }
+    .scores { margin: 20px 0; }
+    .score-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1a1a1a; color: #e8e8e8; }
+    .date { color: #666; font-size: 12px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <h1>Audit Entrepreneur</h1>
+  <p>PERSONA BUSINESS LAB</p>
+
+  <div class="score">Score global: ${total}/144</div>
+
+  <div class="archetype">
+    <h2 style="color:#d4af37;">${arch.name}</h2>
+    <p>${arch.desc}</p>
+  </div>
+
+  <div class="axis">
+    <h3>Ton axe prioritaire: ${themeName}</h3>
+    <p>${axisDescs[themeName]}</p>
+  </div>
+
+  <div class="scores">
+    <h3>Scores détaillés par thème</h3>
+    ${themeScores.map((score, idx) => `<div class="score-row"><span>${themes[idx].name}</span><strong>${score}/16</strong></div>`).join('')}
+  </div>
+
+  <div class="date">Généré le ${new Date().toLocaleDateString('fr-FR')}</div>
+</body>
+</html>
+        `.trim();
+
+        const blob = new Blob([htmlContent], {type: 'text/html'});
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'audit-entrepreneur-' + new Date().getTime() + '.html';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+
+      goToBilan() {
+        alert('Redirection vers la page du bilan (intégration Système.io à configurer');
+      },
+
+      // ===== SHARE & PDF : SANTÉ (Rubrique 1) =====
+      shareHealthTwitter() {
+        const archName = currentArchetype?.arch.name || 'mon archétype';
+        const text = `J'ai découvert mes recommandations santé adaptées à mon archétype d'entrepreneur ${archName} | Audit PERSONA BUSINESS LAB`;
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+      },
+
+      shareHealthLinkedIn() {
+        alert('Partage LinkedIn (intégration à configurer avec votre URL');
+      },
+
+      exportHealthPDF() {
+        if (!currentArchetype) return;
+        const archName = currentArchetype.arch.name;
+        const blocks = (window.healthContent || {})[archName] || [];
+        const prenom = userInfo.prenom || '';
+        const html = this.buildContentPDF({
+          subtitle: 'Santé et habitudes entrepreneuriales',
+          archName,
+          prenom,
+          sectionTitle: `Recommandations pour ton profil ${archName}`,
+          blocks,
+          filenamePrefix: 'sante'
+        });
+        this.downloadHTMLAsFile(html, `sante-${archName.toLowerCase().replace(/[^a-z]/g,'-')}-${Date.now()}.html`);
+      },
+
+      // ===== SHARE & PDF : BIEN-ÊTRE (Rubrique 2) =====
+      shareWellbeingTwitter() {
+        const archName = currentArchetype?.arch.name || 'mon archétype';
+        const text = `J'ai mes recommandations bien-être personnalisées en tant qu'entrepreneur·e ${archName} | Audit PERSONA BUSINESS LAB`;
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+      },
+
+      shareWellbeingLinkedIn() {
+        alert('Partage LinkedIn (intégration à configurer avec votre URL');
+      },
+
+      exportWellbeingPDF() {
+        if (!currentArchetype) return;
+        const archName = currentArchetype.arch.name;
+        const prenom = userInfo.prenom || '';
+        const sexe = userInfo.sexe;
+        const age = userInfo.age;
+
+        let dataset = null;
+        let phaseLabel = '';
+        if (sexe === 'femme') {
+          if (age === '18-35') { dataset = window.wellbeingWomen1835; phaseLabel = 'Cycle menstruel (18–35 ans)'; }
+          else if (age === '35-40') { dataset = window.wellbeingWomen3550; phaseLabel = 'Périménopause (35–40 ans)'; }
+          else if (age === '50+') { dataset = window.wellbeingWomen50; phaseLabel = 'Post-ménopause (50 ans et +)'; }
+        } else if (sexe === 'homme') {
+          dataset = window.wellbeingMen;
+          phaseLabel = 'Équilibre hormonal masculin';
+        }
+        if (!dataset) return;
+
+        const archBlocks = (dataset.archetypes && dataset.archetypes[archName]) || [];
+        const phaseIntro = dataset.phaseIntro;
+
+        const html = this.buildContentPDF({
+          subtitle: `Bien-être personnalisé : ${phaseLabel}`,
+          archName,
+          prenom,
+          sectionTitle: `Pour toi, ${archName}, à cette phase de vie`,
+          phaseIntro,
+          blocks: archBlocks,
+          filenamePrefix: 'bien-etre'
+        });
+        this.downloadHTMLAsFile(html, `bien-etre-${archName.toLowerCase().replace(/[^a-z]/g,'-')}-${Date.now()}.html`);
+      },
+
+      // ===== HELPERS PDF =====
+      buildContentPDF({subtitle, archName, prenom, sectionTitle, phaseIntro, blocks}) {
+        const date = new Date().toLocaleDateString('fr-FR');
+        const archGradient = (currentArchetype?.arch.gradient) || 'linear-gradient(135deg, #d4af37, #00d4ff)';
+        const blocksHtml = (blocks || []).map(b => `
+          <div class="block">
+            ${b.eyebrow ? `<div class="eyebrow">${b.eyebrow}</div>` : ''}
+            ${b.title ? `<h3 class="block-title">${b.title}</h3>` : ''}
+            ${b.body ? `<div class="block-body">${b.body}</div>` : ''}
+            ${b.disclaimer ? `<div class="disclaimer">${b.disclaimer}</div>` : ''}
+          </div>
+        `).join('');
+
+        let phaseHtml = '';
+        if (phaseIntro) {
+          let phasesList = '';
+          if (phaseIntro.phases) {
+            phasesList = '<div class="phases">' + phaseIntro.phases.map(p =>
+              `<div class="phase-item"><strong>${p.name}</strong><div>${p.body}</div></div>`
+            ).join('') + '</div>';
+          }
+          phaseHtml = `
+            <div class="phase-intro">
+              <h2>${phaseIntro.title}</h2>
+              <div>${phaseIntro.body}</div>
+              ${phasesList}
+            </div>
+          `;
+        }
+
+        return `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>${subtitle} | ${archName}</title>
+  <style>
+    @page { margin: 24mm; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.7; color: #e8e8e8; background: #0a0a0a; max-width: 720px; margin: 0 auto; padding: 32px; }
+    header { border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 32px; }
+    .brand { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #d4af37; margin-bottom: 8px; }
+    h1 { font-size: 26px; margin: 0 0 8px; color: #fff; font-family: 'Georgia', serif; font-weight: 300; }
+    .subtitle { font-size: 14px; color: #aaa; margin-bottom: 0; }
+    .archetype-card { background: ${archGradient}; color: #fff; padding: 20px 24px; border-radius: 20px; margin: 24px 0; }
+    .archetype-card .label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; margin-bottom: 4px; }
+    .archetype-card .name { font-size: 24px; font-weight: 600; }
+    .section-title { font-size: 18px; font-weight: 300; font-family: 'Georgia', serif; color: #fff; margin: 32px 0 16px; }
+    .block { padding: 20px 0; border-bottom: 1px solid #1a1a1a; page-break-inside: avoid; }
+    .block:last-child { border-bottom: none; }
+    .eyebrow { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #d4af37; background: rgba(212, 175, 55, 0.08); padding: 4px 10px; border-radius: 12px; margin-bottom: 10px; }
+    .block-title { font-size: 17px; font-weight: 300; font-family: 'Georgia', serif; color: #fff; margin: 0 0 12px; }
+    .block-body { font-size: 13.5px; color: #aaa; }
+    .block-body p { margin: 0 0 12px; }
+    .block-body strong { color: #e8e8e8; font-weight: 600; }
+    .disclaimer { margin-top: 12px; font-size: 11.5px; color: #aaa; font-style: italic; padding: 10px 14px; background: #0f0f0f; border-radius: 8px; border-left: 3px solid #d4af37; }
+    .phase-intro { background: linear-gradient(135deg, rgba(180, 70, 100, 0.06), rgba(180, 100, 130, 0.06)); border: 1px solid rgba(180, 70, 100, 0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 28px; page-break-inside: avoid; }
+    .phase-intro h2 { font-size: 18px; color: #fff; margin: 0 0 12px; font-family: 'Georgia', serif; font-weight: 300; }
+    .phase-intro div { font-size: 13.5px; color: #aaa; }
+    .phases { display: grid; gap: 10px; margin-top: 14px; }
+    .phase-item { background: rgba(255, 255, 255, 0.04); border-radius: 10px; padding: 10px 14px; font-size: 12.5px; color: #aaa; }
+    .phase-item strong { display: block; color: #ff8fb3; margin-bottom: 4px; }
+    footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #1a1a1a; font-size: 11px; color: #666; text-align: center; }
+    .print-hint { background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 8px; padding: 12px 16px; margin-bottom: 24px; font-size: 12.5px; color: #d4af37; }
+    @media print { .print-hint { display: none; } body { padding: 0; } }
+  </style>
+</head>
+<body>
+  <div class="print-hint">Pour enregistrer ce document en PDF, utilise <strong>Cmd/Ctrl + P</strong> puis "Enregistrer en PDF".</div>
+  <header>
+    <div class="brand">PERSONA BUSINESS LAB | Audit Entrepreneur</div>
+    <h1>${subtitle}</h1>
+    <p class="subtitle">${prenom ? 'Pour ' + prenom + ' · ' : ''}Généré le ${date}</p>
+  </header>
+
+  <div class="archetype-card">
+    <div class="label">Ton archétype</div>
+    <div class="name">${archName}</div>
+  </div>
+
+  ${phaseHtml}
+
+  <h2 class="section-title">${sectionTitle}</h2>
+  ${blocksHtml}
+
+  <footer>PERSONA BUSINESS LAB · audit-entrepreneur · ${date}</footer>
+</body>
+</html>`;
+      },
+
+      downloadHTMLAsFile(htmlContent, filename) {
+        const blob = new Blob([htmlContent.trim()], {type: 'text/html'});
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+      },
+
+      goToAppel() {
+        alert('Redirection vers Calendly ou autre (à configurer');
+      },
+
+      sendResultsByEmail() {
+        const emailInput = document.getElementById('result-email');
+        const email = (emailInput.value || '').trim();
+
+        if (!email || !email.includes('@')) {
+          alert('Veuillez renseigner une adresse email valide');
+          return;
+        }
+
+        const resultData = {
+          email: email,
+          prenom: userInfo.prenom,
+          sexe: userInfo.sexe,
+          age: userInfo.age,
+          archetype: this.currentArchetype,
+          axis: this.currentAxis,
+          scores: this.currentScores,
+          timestamp: new Date().toISOString()
+        };
+
+        fetch('[WEBHOOK_SYSTEME_IO]', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(resultData)
+        })
+        .then(response => {
+          if (response.ok) {
+            alert('Tes résultats ont été envoyés à ' + email);
+            emailInput.value = '';
+          } else {
+            alert('Une erreur est survenue. Veuillez réessayer.');
+          }
+        })
+        .catch(error => {
+          console.error('Erreur lors de l\'envoi :', error);
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        });
+      },
+
+      // ===== RUBRIQUE 1 : SANTÉ & HABITUDES =====
+      generateWellbeingPreview(archName) {
+        const sexe = userInfo.sexe;
+        const age = userInfo.age;
+
+        const getWellbeingContent = () => {
+          if (sexe === 'femme') {
+            if (age === '18-35') return window.wellbeingWomen1835;
+            else if (age === '35-40') return window.wellbeingWomen3550;
+            else if (age === '40-50') return window.wellbeingWomen4050;
+            else if (age === '50+') return window.wellbeingWomen50;
+          } else {
+            return window.wellbeingMen;
+          }
+          return null;
+        };
+
+        const wellbeingContent = getWellbeingContent();
+        let previewHTML = '';
+
+        if (wellbeingContent && wellbeingContent.archetypes && wellbeingContent.archetypes[archName]) {
+          const archetypeWellbeing = wellbeingContent.archetypes[archName];
+
+          const axiesToShow = archetypeWellbeing.slice(0, 2);
+          axiesToShow.forEach((axis, idx) => {
+            if (axis.title) {
+              const bodyText = axis.body.replace(/<[^>]+>/g, '').substring(0, 140);
+              previewHTML += `<div style="margin-bottom: 1.5rem;">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #d4af37; font-weight: 600; margin-bottom: 0.5rem;">${axis.eyebrow || ''}</div>
+                <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">${axis.title}</div>
+                <div style="color: #aaa; font-size: 13px; line-height: 1.5;">${bodyText}...</div>
+              </div>`;
+            }
+          });
+        }
+
+        const preview = document.getElementById('wellbeing-preview-content');
+        if (preview) {
+          preview.innerHTML = previewHTML || 'Contenu personnalisé selon ton archétype...';
+        }
+      },
+
+      loadCorrectionArchetype(archName) {
+        const arch = archetypes.find(a => a.name === archName);
+        if (!arch) return;
+
+        const scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        const total = Math.round((arch.range[0] + arch.range[1]) / 2);
+
+        currentArchetype = {
+          arch,
+          themeName: themes[0].name,
+          total: total,
+          scores: scores
+        };
+
+        userInfo.prenom = 'Test';
+        userInfo.sexe = 'femme';
+        userInfo.age = '35-50';
+
+        this.showResult();
+      },
+
+      goToPaywall() {
+        this.showScreen('screen-paywall');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      },
+
+      togglePaywallSocials(choice) {
+        const fieldsDiv = document.getElementById('paywall-socials-fields');
+        const yesBtn = document.querySelector('[data-paywall-socials="oui"]');
+        const noBtn = document.querySelector('[data-paywall-socials="non"]');
+
+        yesBtn.style.borderColor = '#1a1a1a';
+        yesBtn.style.background = '#0f0f0f';
+        yesBtn.style.color = '#e8e8e8';
+        yesBtn.style.fontWeight = '500';
+
+        noBtn.style.borderColor = '#1a1a1a';
+        noBtn.style.background = '#0f0f0f';
+        noBtn.style.color = '#e8e8e8';
+        noBtn.style.fontWeight = '500';
+
+        if (choice === 'oui') {
+          fieldsDiv.style.display = 'flex';
+          yesBtn.style.borderColor = '#d4af37';
+          yesBtn.style.background = 'rgba(212, 175, 55, 0.1)';
+          yesBtn.style.color = '#d4af37';
+          yesBtn.style.fontWeight = '600';
+        } else {
+          fieldsDiv.style.display = 'none';
+          noBtn.style.borderColor = '#d4af37';
+          noBtn.style.background = 'rgba(212, 175, 55, 0.1)';
+          noBtn.style.color = '#d4af37';
+          noBtn.style.fontWeight = '600';
+        }
+      },
+
+      saveSocialsAndProceed() {
+        const yesBtn = document.querySelector('[data-paywall-socials="oui"]');
+        const isYesSelected = yesBtn.style.borderColor === 'rgb(0, 153, 255)' || yesBtn.style.borderColor === '#d4af37';
+
+        const socialsData = {};
+        if (isYesSelected) {
+          socialsData.site = document.getElementById('paywall-social-site').value;
+          socialsData.instagram = document.getElementById('paywall-social-instagram').value;
+          socialsData.facebook = document.getElementById('paywall-social-facebook').value;
+          socialsData.blog = document.getElementById('paywall-social-blog').value;
+          socialsData.threads = document.getElementById('paywall-social-threads').value;
+          socialsData.linkedin = document.getElementById('paywall-social-linkedin').value;
+          socialsData.tiktok = document.getElementById('paywall-social-tiktok').value;
+          socialsData.youtube = document.getElementById('paywall-social-youtube').value;
+        }
+
+        localStorage.setItem('paywallSocials', JSON.stringify(socialsData));
+
+        window.open('[lien de paiement]', '_blank');
+      },
+
+      generateProspectionContent(archName) {
+        const container = document.getElementById('prospection-content');
+        if (!container) return;
+
+        const prospection = (window.prospectionContent || {})[archName];
+        if (!prospection) {
+          container.innerHTML = 'Contenu prospection non disponible.';
+          return;
+        }
+
+        container.innerHTML = `
+          <div style="padding: 1.5rem; background: #0f0f0f; border-radius: 20px; border-left: 4px solid #d4af37; margin-bottom: 1rem;">
+            <div style="font-size: 14px; font-weight: 600; color: #d4af37; margin-bottom: 0.5rem;">Comment tu prospectes naturellement</div>
+            <div style="font-size: 14px; color: #aaa; line-height: 1.6;">${prospection.bloc1}</div>
+          </div>
+
+          <div style="padding: 1.5rem; background: #0f0f0f; border-radius: 20px; border-left: 4px solid #06A77D; margin-bottom: 1rem;">
+            <div style="font-size: 14px; font-weight: 600; color: #06A77D; margin-bottom: 0.5rem;">Ta force naturelle pour attirer des clients</div>
+            <div style="font-size: 14px; color: #aaa; line-height: 1.6;">${prospection.bloc2}</div>
+          </div>
+
+          <div style="padding: 1.5rem; background: #0f0f0f; border-radius: 20px; border-left: 4px solid #ff9900; margin-bottom: 1rem;">
+            <div style="font-size: 14px; font-weight: 600; color: #ff9900; margin-bottom: 0.5rem;">2 ou 3 actions concretes adaptees à ton profil</div>
+            <div style="font-size: 14px; color: #aaa; line-height: 1.6;">${prospection.bloc3}</div>
+          </div>
+
+          <div style="padding: 1.5rem; background: #0f0f0f; border-radius: 20px; border-left: 4px solid #e74c3c; margin-bottom: 1rem;">
+            <div style="font-size: 14px; font-weight: 600; color: #e74c3c; margin-bottom: 0.5rem;">Ce que tu dois arreter de faire</div>
+            <div style="font-size: 14px; color: #aaa; line-height: 1.6;">${prospection.bloc4}</div>
+          </div>
+        `;
+      },
+
+      goToHealth() {
+        if (!currentArchetype) { this.showScreen('screen-intro'); return; }
+        const archName = currentArchetype.arch.name;
+        const content = (window.healthContent || {})[archName] || [];
+        const prenom = userInfo.prenom || '';
+
+        document.getElementById('health-title').textContent = `Santé et habitudes${prenom ? ' | ' + prenom : ''}`;
+        document.getElementById('health-intro').innerHTML = `Ton archétype <strong>${archName}</strong> a un impact direct sur ta façon de vivre ton corps. Voici un aperçu des axes prioritaires pour toi.`;
+
+        const container = document.getElementById('health-content');
+        container.innerHTML = '';
+
+        const previewContent = content.slice(0, 2);
+        previewContent.forEach(block => {
+          const limitedBlock = {
+            ...block,
+            items: block.items ? block.items.slice(0, 3) : []
+          };
+          container.appendChild(this.renderContentBlock(limitedBlock));
+        });
+
+        this.showScreen('screen-health');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      },
+
+      // ===== RUBRIQUE 2 : BIEN-ÊTRE CONDITIONNEL =====
+      goToWellbeing() {
+        if (!currentArchetype) { this.showScreen('screen-intro'); return; }
+        const archName = currentArchetype.arch.name;
+        const prenom = userInfo.prenom || '';
+        const sexe = userInfo.sexe;
+        const age = userInfo.age;
+
+        let dataset = null;
+        let phaseLabel = '';
+
+        if (sexe === 'femme') {
+          if (age === '18-35') {
+            dataset = window.wellbeingWomen1835;
+            phaseLabel = 'Cycle menstruel';
+          } else if (age === '35-50') {
+            dataset = window.wellbeingWomen3550;
+            phaseLabel = 'Périménopause';
+          } else if (age === '40-50') {
+            dataset = window.wellbeingWomen4050;
+            phaseLabel = 'Ménopause';
+          } else if (age === '50+') {
+            dataset = window.wellbeingWomen50;
+            phaseLabel = 'Post-ménopause';
+          }
+        } else if (sexe === 'homme') {
+          dataset = window.wellbeingMen;
+          phaseLabel = 'Équilibre hormonal masculin';
+        }
+
+        document.getElementById('wellbeing-title').textContent = `Bien-être personnalisé${prenom ? ' | ' + prenom : ''}`;
+        document.getElementById('wellbeing-intro').innerHTML = `Section <strong>${phaseLabel}</strong>, croisée avec ton archétype <strong>${archName}</strong>. Contenu adapté à toi seul·e, d'autres profils verront un contenu différent.`;
+
+        const container = document.getElementById('wellbeing-content');
+        container.innerHTML = '';
+
+        if (!dataset) {
+          container.innerHTML = '<p style="color:#666;">Contenu non disponible pour cette combinaison.</p>';
+          this.showScreen('screen-wellbeing');
+          return;
+        }
+
+        if (dataset.phaseIntro) {
+          const intro = document.createElement('div');
+          intro.className = 'phase-intro';
+          let phasesHtml = '';
+          if (dataset.phaseIntro.phases) {
+            phasesHtml = '<div class="phase-list">' + dataset.phaseIntro.phases.map(p =>
+              `<div class="phase-item"><strong>${p.name}</strong>${p.body}</div>`
+            ).join('') + '</div>';
+          }
+          intro.innerHTML = `
+            <div class="phase-intro-title">${dataset.phaseIntro.title}</div>
+            <div class="phase-intro-body">${dataset.phaseIntro.body}</div>
+            ${phasesHtml}
+          `;
+          container.appendChild(intro);
+        }
+
+        let archBlocks = [];
+        if (dataset.archetypes && dataset.archetypes[archName]) {
+          archBlocks = dataset.archetypes[archName];
+        } else if (Array.isArray(dataset[archName])) {
+          archBlocks = dataset[archName];
+        }
+        archBlocks.forEach(block => {
+          container.appendChild(this.renderContentBlock(block));
+        });
+
+        this.showScreen('screen-wellbeing');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      },
+
+      backToResult() {
+        this.showScreen('screen-result');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      },
+
+      renderContentBlock(block) {
+        const div = document.createElement('div');
+        div.className = 'content-block';
+        let html = '';
+        if (block.eyebrow) html += `<div class="content-block-eyebrow">${block.eyebrow}</div>`;
+        if (block.title) html += `<div class="content-block-title">${block.title}</div>`;
+        if (block.body) html += `<div class="content-block-body">${block.body}</div>`;
+        if (block.disclaimer) html += `<div class="content-disclaimer">${block.disclaimer}</div>`;
+        div.innerHTML = html;
+        return div;
+      },
+
+      showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+      }
+    };
+
+    // Load history & user info on init
+    auditHistory = JSON.parse(localStorage.getItem('auditHistory') || '[]');
+    try {
+      const savedUser = localStorage.getItem('auditUserInfo');
+      if (savedUser) userInfo = Object.assign(userInfo, JSON.parse(savedUser));
+    } catch(e) {}
+
+    function wireOnboardingForm() {
+      const prenomInput = document.getElementById('user-prenom');
+      if (prenomInput) {
+        prenomInput.addEventListener('input', () => {
+          window.auditApp.validateOnboarding();
+          window.auditApp.saveUserInfo();
+        });
+      }
+
+      document.querySelectorAll('#form-sexe .form-pill, #form-age .form-pill, #form-statut .form-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          const siblings = pill.parentElement.querySelectorAll('.form-pill');
+          siblings.forEach(s => s.classList.remove('selected'));
+          pill.classList.add('selected');
+          window.auditApp.validateOnboarding();
+          window.auditApp.saveUserInfo();
+        });
+      });
+
+      const metierInput = document.getElementById('user-metier');
+      if (metierInput) {
+        metierInput.addEventListener('input', () => {
+          window.auditApp.validateOnboarding();
+          window.auditApp.saveUserInfo();
+        });
+      }
+
+      const fonctionInput = document.getElementById('user-fonction');
+      if (fonctionInput) {
+        fonctionInput.addEventListener('input', () => {
+          window.auditApp.validateOnboarding();
+          window.auditApp.saveUserInfo();
+        });
+      }
+
+      // Gestion des réseaux sociaux
+      const socialsChoiceButtons = document.querySelectorAll('#form-socials-choice .form-pill');
+      socialsChoiceButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          socialsChoiceButtons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          window.auditApp.validateOnboarding();
+        });
+      });
+
+      // Rendre le bouton de prix dans le CTA statique
+      const ctaStatic = document.getElementById('cta-buttons-static');
+      if (ctaStatic) {
+        ctaStatic.insertAdjacentHTML('afterbegin', renderPriceCTA());
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        window.auditApp.initTheme();
+        wireOnboardingForm();
+      });
+    } else {
+      window.auditApp.initTheme();
+      wireOnboardingForm();
+    }
+  </script>
+
+
+</div></body></html>

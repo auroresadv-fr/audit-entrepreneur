@@ -1190,11 +1190,11 @@
     ];
 
     const archetypes = [
-      {range:[36,65], name:"Le Pionnier", desc:"Tu avances vite, tu testes tout, mais rien ne tient vraiment. Ton énergie est une force, c'est la structure qui manque.", gradient:"linear-gradient(135deg, #FF6B35, #FF8C42)"},
-      {range:[66,85], name:"L'Architecte", desc:"Tout est dans ta tête, très peu est formalisé. Tu as une vision claire mais elle reste invisible. C'est l'effort de formalisation qui va t'en coûter ou t'en faire gagner.", gradient:"linear-gradient(135deg, #F77F00, #FCBF49)"},
-      {range:[86,100], name:"Le Porteur", desc:"Tu portes tout, seul·e. Ton business tourne parce que tu t'y consacres entièrement, mais ta vie perso absorbe le surcoût. La délégation est ton levier.", gradient:"linear-gradient(135deg, #D62828, #F77F00)"},
-      {range:[101,120], name:"Le Bâtisseur", desc:"Tu as commencé à structurer. Certains axes sont solides, d'autres ont besoin de fondations. Tu es en transition, systématise ce qui marche.", gradient:"linear-gradient(135deg, #06A77D, #1DB584)"},
-      {range:[121,144], name:"Le Stratège", desc:"Tes systèmes tournent, tu délègues, tu pilotes. Tu n'es plus dans le business, tu travailles sur le business. C'est le signe que ta construction est juste.", gradient:"linear-gradient(135deg, #d4af37, #00d4ff)"}
+      {range:[40,72], name:"Le Pionnier", desc:"Tu avances vite, tu testes tout, mais rien ne tient vraiment. Ton énergie est une force, c'est la structure qui manque.", gradient:"linear-gradient(135deg, #FF6B35, #FF8C42)"},
+      {range:[73,94], name:"L'Architecte", desc:"Tout est dans ta tête, très peu est formalisé. Tu as une vision claire mais elle reste invisible. C'est l'effort de formalisation qui va t'en coûter ou t'en faire gagner.", gradient:"linear-gradient(135deg, #F77F00, #FCBF49)"},
+      {range:[95,111], name:"Le Porteur", desc:"Tu portes tout, seul·e. Ton business tourne parce que tu t'y consacres entièrement, mais ta vie perso absorbe le surcoût. La délégation est ton levier.", gradient:"linear-gradient(135deg, #D62828, #F77F00)"},
+      {range:[112,133], name:"Le Bâtisseur", desc:"Tu as commencé à structurer. Certains axes sont solides, d'autres ont besoin de fondations. Tu es en transition, systématise ce qui marche.", gradient:"linear-gradient(135deg, #06A77D, #1DB584)"},
+      {range:[134,160], name:"Le Stratège", desc:"Tes systèmes tournent, tu délègues, tu pilotes. Tu n'es plus dans le business, tu travailles sur le business. C'est le signe que ta construction est juste.", gradient:"linear-gradient(135deg, #d4af37, #00d4ff)"}
     ];
 
     const axisDescs = {
@@ -1413,7 +1413,7 @@
 
       showResult() {
         themeScores = Array(10).fill(0);
-        for (let i = 0; i < 36; i++) {
+        for (let i = 0; i < 40; i++) {
           if (answers[i] !== null) {
             const {ti} = this.getThemeAndLocal(i);
             themeScores[ti] += (4 - answers[i]);
@@ -1431,14 +1431,14 @@
 
         currentArchetype = {arch, themeName, total, scores: [...themeScores]};
 
-        document.getElementById('result-intro').textContent = 'Score global : ' + total + ' / 144';
+        document.getElementById('result-intro').textContent = 'Score global : ' + total + ' / 160';
         document.getElementById('result-name').textContent = arch.name;
         document.getElementById('result-desc').textContent = arch.desc;
 
         const sphere = document.getElementById('result-sphere');
         sphere.style.background = arch.gradient;
 
-        const isStratege = arch.name === 'Le Stratège' || total >= 130;
+        const isStratege = arch.name === 'Le Stratège' || total >= 134;
         const axisBlock = document.querySelector('.axis-block');
         if (isStratege) {
           axisBlock.style.display = 'none';
@@ -1471,7 +1471,7 @@
           barsContainer.appendChild(barDiv);
         });
 
-        if (arch.name === 'Le Stratège' || total >= 130) {
+        if (arch.name === 'Le Stratège' || total >= 134) {
           document.querySelector('.cta-block').innerHTML = `
             <div style="text-align: center; padding: 2rem 0;">
               <div style="font-size: 48px; margin-bottom: 1rem;">&#127919;</div>
@@ -1543,7 +1543,7 @@
       },
 
       shareTwitter() {
-        const text = `Je suis ${currentArchetype.arch.name} Score: ${currentArchetype.total}/144. Découvrez votre archétype d'entrepreneur sur PERSONA BUSINESS LAB`;
+        const text = `Je suis ${currentArchetype.arch.name} Score: ${currentArchetype.total}/160. Découvrez votre archétype d'entrepreneur sur PERSONA BUSINESS LAB`;
         window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
       },
 
@@ -1574,7 +1574,7 @@
   <h1>Audit Entrepreneur</h1>
   <p>PERSONA BUSINESS LAB</p>
 
-  <div class="score">Score global: ${total}/144</div>
+  <div class="score">Score global: ${total}/160</div>
 
   <div class="archetype">
     <h2 style="color:#d4af37;">${arch.name}</h2>

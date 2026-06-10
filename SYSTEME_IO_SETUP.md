@@ -2,228 +2,267 @@
 
 ## Vue d'ensemble
 
-L'audit capture le prénom et l'email, puis envoie les résultats à **Systeme.io uniquement**.
-Systeme.io gère ensuite:
-- ✅ Ajout du contact à votre liste
-- ✅ Envoi des résultats par email au client
-- ✅ Notification à vous
-- ✅ Relance automatique à 12 mois
+L'audit capture le prénom et l'email, puis:
+1. ✅ Ajoute le contact directement via **l'API Systeme.io**
+2. ✅ Systeme.io envoie les résultats par email au client
+3. ✅ Systeme.io vous envoie une notification
+4. ✅ Relance automatique à 12 mois
 
-**Aucun backend, aucun service tiers. Tout en HTML + Systeme.io.**
+**Aucun backend, aucun service tiers. Tout en HTML + Systeme.io API.**
 
 ---
 
-## ⚙️ Configuration Systeme.io (10 minutes)
+## 🔌 Intégration API (Déjà configurée!)
 
-### Étape 1: Créer un Webhook dans Systeme.io
+La clé API Systeme.io est **déjà intégrée** dans le code:
+- Endpoint: `https://api.systeme.io/api/contacts`
+- Clé API: Configurée dans `Audit-Entrepreneur.html` ligne ~1476
+- Données envoyées: `prénom`, `email`, `archétype`, `score`, `scores détaillés`
+
+**Quand le client soumet le formulaire:**
+1. Le prénom et email sont capturés
+2. Les résultats sont calculés (archétype + scores)
+3. Un appel API ajoute le contact à Systeme.io
+4. Les résultats s'affichent au client
+
+---
+
+## ⚙️ Configuration Systeme.io (15 minutes)
+
+### Étape 1: Créer une liste de contacts
 
 1. Connectez-vous à https://www.systeme.io
-2. Allez dans **Paramètres → Intégrations**
-3. Cherchez **"Webhooks"** ou **"Zaps"**
-4. Cliquez sur **Créer un nouveau webhook** (ou intégration)
-5. Configuration:
-   - **URL:** Copiez l'URL du webhook (format: `https://api.systeme.io/webhook/xxxxx`)
-   - **Méthode:** POST
-   - **Format:** JSON
-
-**Important:** Systeme.io plan gratuit accepte les webhooks. Copiez l'URL complète.
+2. Allez dans **Contacts → Mes listes**
+3. Cliquez sur **+ Créer une nouvelle liste**
+4. Nommez-la: `"Audit Entrepreneur"`
+5. Sauvegardez
 
 ---
 
-### Étape 2: Ajouter l'URL Webhook au site
+### Étape 2: Configurer l'automation pour les résultats
 
-**Dans `Audit-Entrepreneur.html`, ligne ~1468:**
+1. Allez dans **Automations** (ou **Workflows**)
+2. Créez une **nouvelle automation**:
 
-```javascript
-const WEBHOOK_URL = 'https://api.systeme.io/webhook/xxxxx'; // ← Remplacez par votre URL
-```
+**Déclencheur:**
+- Type: **Contact ajouté à une liste**
+- Liste: **"Audit Entrepreneur"**
 
-**Remplacez `xxxxx` par l'identifiant de votre webhook Systeme.io.**
+**Actions:**
 
----
+**Action 1: Attendre un peu**
+- Délai: 2 secondes (pour s'assurer que le contact est bien ajouté)
 
-### Étape 3: Configurer l'automation Systeme.io
+**Action 2: Envoyer un email au client**
+- Type: **Envoyer un email**
+- À: L'email du contact
+- De: Votre email
+- Objet: `Tes résultats d'audit - {{archetype}}`
 
-**Pour envoyer automatiquement les résultats par email:**
-
-1. Dans Systeme.io, allez dans **Automations** ou **Scenarios**
-2. Créez une nouvelle automation:
-   - **Déclencheur:** Webhook reçu (votre webhook)
-   - **Action 1:** Ajouter le contact à la liste "Audit Entrepreneur"
-   - **Action 2:** Envoyer un email avec les résultats
-
-**Template d'email pour Systeme.io:**
+**Contenu de l'email:**
 
 ```
-Objet: Tes résultats d'audit - {{archetype}}
-
-Contenu:
-Bonjour {{prenom}},
+Bonjour {{first_name}},
 
 Voici tes résultats d'audit Entrepreneur:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Ton Archétype: {{archetype}}
 Score Global: {{score}}/160
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Scores par thème:
 {{scores_detail}}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Pour voir ton bilan complet avec recommandations:
-[Lien vers ton offre]
+Pour accéder à ton bilan complet avec recommandations personnalisées:
+[Ajouter votre lien vers l'offre premium]
 
 À bientôt!
 Équipe Persona Business Lab
 ```
 
-**Variables disponibles (depuis le webhook):**
-- `{{prenom}}` - Le prénom du client
-- `{{email}}` - Email du client
-- `{{archetype}}` - L'archétype (ex: "Le Stratège")
-- `{{score}}` - Score global (ex: "125")
-- `{{scores_detail}}` - Tous les scores détaillés
-- `{{date_submission}}` - Date de soumission
+**Pour utiliser les variables:**
+- `{{first_name}}` = Le prénom
+- `{{email}}` = L'email
+- `{{archetype}}` = L'archétype (Ex: "Le Stratège")
+- `{{score}}` = Score global (Ex: "125")
+- `{{scores_detail}}` = Tous les scores (Ex: "Administratif: 7/16 | ...")
+- `{{date_submission}}` = Date de soumission
 
 ---
 
-### Étape 4: Configurer la notification admin
+### Étape 3: Configurer la notification pour vous
 
-1. Créez une **deuxième automation**:
-   - **Déclencheur:** Webhook reçu
-   - **Action:** Envoyer un email à `aurore.s.adv@gmail.com` (votre email)
+1. Créez une **deuxième automation**
 
-**Template pour vous (admin):**
+**Déclencheur:**
+- Type: **Contact ajouté à une liste**
+- Liste: **"Audit Entrepreneur"**
+
+**Actions:**
+
+**Action 1: Envoyer un email à l'admin**
+- À: **Votre email** (aurore.s.adv@gmail.com)
+- De: Systeme.io
+- Objet: `[AUDIT] Nouvelle soumission - {{first_name}}`
+
+**Contenu:**
 
 ```
-Objet: [AUDIT] Nouvelle soumission - {{prenom}}
-
-Contenu:
 Nouvelle soumission d'audit:
 
-Prénom: {{prenom}}
+Prénom: {{first_name}}
 Email: {{email}}
-Archétype: {{archetype}}
-Score: {{score}}/160
-
-Scores:
-{{scores_detail}}
-
 Date: {{date_submission}}
 
-À relancer: {{date_relance_12_mois}}
+Résultats:
+- Archétype: {{archetype}}
+- Score: {{score}}/160
 
-→ Voir dans Systeme.io
+Scores détaillés:
+{{scores_detail}}
+
+À relancer: {{date_submission_12_mois}}
+
+→ Voir le contact dans Systeme.io
 ```
 
 ---
 
-### Étape 5: Relance automatique à 12 mois
+### Étape 4: Configurer la relance à 12 mois
 
-1. Créez une **troisième automation**:
-   - **Déclencheur:** Contact ajouté à la liste "Audit Entrepreneur"
-   - **Action:** Attendre 365 jours
-   - **Puis:** Envoyer un email de relance
+1. Créez une **troisième automation**
 
-**Template email de relance:**
+**Déclencheur:**
+- Type: **Contact ajouté à une liste**
+- Liste: **"Audit Entrepreneur"**
+
+**Actions:**
+
+**Action 1: Attendre 365 jours**
+- Délai: 365 jours
+
+**Action 2: Envoyer un email de relance**
+- À: L'email du contact
+- Objet: `Refaire votre audit - Mise à jour 12 mois`
+
+**Contenu:**
 
 ```
-Objet: Refaire votre audit - Mise à jour 12 mois
+Bonjour {{first_name}},
 
-Contenu:
-Bonjour {{prenom}},
+Il y a un an, vous aviez complété notre audit Entrepreneur 
+et découvert que vous étiez {{archetype}} (score: {{score}}/160).
 
-Il y a 12 mois, vous aviez complété notre audit Entrepreneur 
-et découvert que vous étiez {{archetype}}.
+Les choses ont évolué! Nous aimerions savoir comment 
+votre business a progressé.
 
-Les choses évoluent! Voulez-vous refaire l'audit pour voir 
-comment votre score a changé?
+Voulez-vous refaire l'audit pour voir comment votre score a changé?
 
 [Refaire l'audit]
 
 À bientôt!
+Équipe Persona Business Lab
 ```
 
 ---
 
 ## 🧪 Tester l'intégration
 
-1. **Ouvrir:** `Audit-Entrepreneur.html` dans un navigateur
-2. **Compléter:** Les 40 questions
-3. **Remplir:** Prénom + Email
-4. **Vérifier:** 
-   - Email reçu dans votre boîte (résultats)
-   - Contact visible dans Systeme.io
-   - Email de notification admin reçu
+**Test local:**
+
+1. Ouvrir `Audit-Entrepreneur.html` dans un navigateur
+2. **Compléter les 40 questions** (répondre rapidement)
+3. **Remplir le formulaire:**
+   - Prénom: Test
+   - Email: votre-email@gmail.com
+4. **Vérifier:**
+   - ✓ Les résultats s'affichent immédiatement
+   - ✓ Email reçu avec vos résultats (dans 1-2 min)
+   - ✓ Nouveau contact dans Systeme.io (Contacts → Audit Entrepreneur)
 
 ---
 
 ## 📋 Checklist
 
-- [ ] Créer webhook dans Systeme.io
-- [ ] Copier l'URL du webhook
-- [ ] Remplacer `REMPLACER_PAR_VOTRE_WEBHOOK_SYSTEME_IO` dans le code
-- [ ] Créer automation 1: Ajouter contact + Email résultats
-- [ ] Créer automation 2: Notification admin
+- [ ] Créer la liste "Audit Entrepreneur" dans Systeme.io
+- [ ] Créer automation 1: Email résultats au client
+- [ ] Créer automation 2: Notification à l'admin
 - [ ] Créer automation 3: Relance 12 mois
+- [ ] Activer toutes les automations
 - [ ] Tester avec un audit complet
-- [ ] Vérifier les emails reçus
-- [ ] Activer les automations
+- [ ] Vérifier que les emails sont reçus
+- [ ] Ajouter le lien vers l'offre premium dans l'email
 
 ---
 
-## 🔗 Variables webhook disponibles
+## 🔐 Sécurité de la clé API
 
-Quand le client soumet le formulaire, Systeme.io reçoit:
+La clé API est **stockée dans le code HTML client**. 
+C'est acceptable pour Systeme.io car:
+- ✅ L'API est en lecture/écriture (ajouter contacts)
+- ✅ Pas d'accès destructeur
+- ✅ Plan gratuit avec limite de contacts
 
-```json
-{
-  "email": "client@email.com",
-  "prenom": "Marie",
-  "archetype": "Le Stratège",
-  "score": 125,
-  "scores_detail": "Administratif: 7/16 | Délégation: 8/16 | ...",
-  "date_submission": "10/06/2026 19:30"
-}
+Si vous voulez plus de sécurité, vous pouvez:
+- Créer un backend simple (Node.js, Python)
+- Le backend utilise la clé API
+- Le client appelle le backend au lieu de l'API directe
+
+Mais pour une simple intégration, c'est fine! 👍
+
+---
+
+## 📊 Variables disponibles dans Systeme.io
+
+Quand un contact est ajouté, Systeme.io a accès à:
+
+```
+{{first_name}} = Prénom du client
+{{email}} = Email
+{{archetype}} = L'archétype identifié
+{{score}} = Score global (/160)
+{{scores_detail}} = Tous les scores thème par thème
+{{date_submission}} = Date/heure de soumission
 ```
 
-Utilisez ces variables dans vos emails Systeme.io avec la syntaxe `{{variable}}`.
+Vous pouvez utiliser ces variables dans n'importe quel email Systeme.io!
 
 ---
 
 ## ❓ FAQ
 
-**Q: Le webhook fonctionne sur plan gratuit Systeme.io?**
-A: Oui, les webhooks sont disponibles même sur le plan gratuit.
+**Q: L'API fonctionne sur plan gratuit Systeme.io?**
+A: Oui, l'API accepte jusqu'à 500 contacts sur le plan gratuit.
 
-**Q: Combien de contacts/emails par mois?**
-A: Plan gratuit Systeme.io: 500 contacts, emails inclus.
+**Q: Où voir les contacts ajoutés?**
+A: Systeme.io → Contacts → Sélectionner la liste "Audit Entrepreneur"
 
-**Q: Puis-je modifier le template d'email?**
-A: Oui, directement dans Systeme.io. Utilisez les variables `{{variable}}`.
+**Q: Comment modifier un email d'automation?**
+A: Systeme.io → Automations → Cliquer sur l'automation → Modifier l'email
 
-**Q: Comment tester avant de mettre en ligne?**
-A: Utilisez un email de test d'abord, puis votre vrai email.
+**Q: Combien de temps avant l'email?**
+A: Les automations s'exécutent généralement en 1-3 minutes.
 
-**Q: Où se trouve mon webhook URL?**
-A: Systeme.io → Intégrations → Webhooks (vous la copier lors de création)
+**Q: Puis-je tester le formulaire avec un email de test?**
+A: Oui! Utilisez n'importe quel email pour tester.
 
 ---
 
 ## 🚀 C'est tout!
 
-Votre intégration est prête. **Aucun backend, aucun code à déployer.**
-Tout passe par Systeme.io! 
+Votre intégration est prête! 
 
-**Les étapes:**
-1. Client fait l'audit
-2. Remplit prénom + email
-3. Données → Webhook Systeme.io
-4. Automation envoie email résultats au client
-5. Automation envoie notification à vous
-6. Après 12 mois: email de relance automatique
+**Le flux complet:**
+1. ✅ Client complète les 40 questions
+2. ✅ Remplit prénom + email
+3. ✅ API ajoute le contact à Systeme.io
+4. ✅ Automation 1 envoie les résultats
+5. ✅ Automation 2 vous notifie
+6. ✅ Après 12 mois: Automation 3 propose de refaire l'audit
 
-✨ **Simple et efficace!**
+**Aucun backend, aucun code à déployer.**
+Tout est en HTML + Systeme.io! ✨
 

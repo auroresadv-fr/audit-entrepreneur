@@ -1453,51 +1453,55 @@
         userInfo.prenom = prenom;
         userInfo.email = email;
 
-        // Envoyer les données à Systeme.io
-        this.sendToSystemeIO(prenom, email);
-
-        // Afficher les résultats
-        this.showResult();
+        // Envoyer à Systeme.io avant d'afficher les résultats
+        this.addContactToSystemeIO(prenom, email);
       },
 
-      sendToSystemeIO(prenom, email) {
-        // Webhook Systeme.io (à configurer)
-        const WEBHOOK_URL = 'REMPLACER_PAR_VOTRE_WEBHOOK_SYSTEME_IO';
+      addContactToSystemeIO(prenom, email) {
+        // API Systeme.io
+        const API_KEY = 'mzfvwh8z85gcxq4zr9g58hpquyaoc3ijx10m26ngl74yw0k8wvf7ujsftl5gam4h';
+        const API_URL = 'https://api.systeme.io/api/contacts';
 
-        if (WEBHOOK_URL === 'REMPLACER_PAR_VOTRE_WEBHOOK_SYSTEME_IO') {
-          console.warn('⚠ Webhook Systeme.io non configuré');
-          return;
-        }
-
-        // Préparer les données avec archétype et scores
-        const resultsText = themeScores.map((score, idx) => {
+        // Préparer les données du contact avec les résultats
+        const scoresDetail = themeScores.map((score, idx) => {
           return `${themes[idx].name}: ${score}/16`;
         }).join(' | ');
 
         const contactData = {
           email: email,
-          prenom: prenom,
-          archetype: currentArchetype.arch.name,
-          score: currentArchetype.total,
-          scores_detail: resultsText,
-          date_submission: new Date().toLocaleString('fr-FR')
+          first_name: prenom,
+          custom_fields: {
+            archetype: currentArchetype.arch.name,
+            score: currentArchetype.total,
+            scores_detail: scoresDetail,
+            date_submission: new Date().toLocaleString('fr-FR')
+          }
         };
 
-        // Envoyer à Systeme.io via webhook
-        fetch(WEBHOOK_URL, {
+        // Envoyer à Systeme.io API
+        fetch(API_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': API_KEY
+          },
           body: JSON.stringify(contactData)
         })
-        .then(r => {
-          if (r.ok || r.status === 200 || r.status === 201) {
-            console.log('✓ Données envoyées à Systeme.io');
+        .then(response => {
+          if (response.ok) {
+            console.log('✓ Contact ajouté à Systeme.io');
+            // Afficher les résultats après succès
+            this.showResult();
           } else {
-            console.warn('⚠ Systeme.io réponse:', r.status);
+            console.warn('⚠ Systeme.io:', response.status);
+            // Afficher quand même les résultats même si l'API échoue
+            this.showResult();
           }
         })
-        .catch(err => {
-          console.warn('⚠ Impossible de joindre Systeme.io:', err.message);
+        .catch(error => {
+          console.warn('⚠ Erreur Systeme.io:', error.message);
+          // Afficher les résultats même en cas d'erreur
+          this.showResult();
         });
       },
 

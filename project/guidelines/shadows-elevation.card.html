@@ -1,0 +1,60 @@
+<!-- @dsCard group="Spacing" viewport="700x350" name="Shadows & Elevation" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadows & Elevation</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .shadow-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .shadow-box {
+      width: 80px;
+      height: 80px;
+      background: var(--bg-primary);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-secondary);
+    }
+    .shadow-label {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="shadow-row">
+    <div class="shadow-box" style="box-shadow: var(--shadow-sm);"></div>
+    <div class="shadow-label">Shadow SM</div>
+  </div>
+
+  <div class="shadow-row">
+    <div class="shadow-box" style="box-shadow: var(--shadow-md);"></div>
+    <div class="shadow-label">Shadow MD</div>
+  </div>
+
+  <div class="shadow-row">
+    <div class="shadow-box" style="box-shadow: var(--shadow-lg);"></div>
+    <div class="shadow-label">Shadow LG</div>
+  </div>
+
+  <div class="shadow-row">
+    <div class="shadow-box" style="box-shadow: var(--shadow-elevation-2);"></div>
+    <div class="shadow-label">Elevation 2 (UI Lift)</div>
+  </div>
+
+  <div class="shadow-row">
+    <div class="shadow-box" style="box-shadow: var(--shadow-blue);"></div>
+    <div class="shadow-label">Accent Shadow (Blue)</div>
+  </div>
+</body>
+</html>

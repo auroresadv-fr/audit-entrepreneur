@@ -1,0 +1,53 @@
+<!-- @dsCard group="Type" viewport="700x350" name="Body & Small Text" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography - Body & Small</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .type-sample {
+      margin-bottom: 1.5rem;
+    }
+    .type-label {
+      font-size: var(--font-size-xs);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: 0.5rem;
+    }
+    .lg { font-size: var(--font-size-lg); line-height: var(--line-height-relaxed); }
+    .base { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); }
+    .sm { font-size: var(--font-size-sm); line-height: var(--line-height-normal); }
+    .xs { font-size: var(--font-size-xs); line-height: var(--line-height-normal); }
+    .label { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
+  </style>
+</head>
+<body>
+  <div class="type-sample">
+    <div class="type-label">Body Large (18px)</div>
+    <div class="lg">Découvrez un audit détaillé spécialement adapté à votre profil entrepreneurial et vos besoins stratégiques.</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Body Regular (16px)</div>
+    <div class="base">Notre plateforme offre une analyse personnalisée basée sur votre personnalité et vos objectifs business uniques.</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Body Small (14px)</div>
+    <div class="sm">Les résultats incluent des recommandations d'actions concrètes et un diagnostic détaillé de votre entreprise.</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Label & Caption</div>
+    <div class="label">Option de conseil 1-to-1 disponible</div>
+    <div class="xs" style="color: var(--text-tertiary); margin-top: 0.5rem;">Accompagnement personnalisé inclus dans certains plans premium</div>
+  </div>
+</body>
+</html>

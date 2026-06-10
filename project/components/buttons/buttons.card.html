@@ -1,0 +1,101 @@
+<!-- @dsCard group="Components" viewport="700x500" name="Buttons" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Component</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .demo-section {
+      margin-bottom: 2rem;
+    }
+    .demo-title {
+      font-size: var(--font-size-sm);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: 1rem;
+      font-weight: var(--font-weight-semibold);
+    }
+    .demo-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button } = window.DesignSystem_776417;
+
+    function ButtonDemo() {
+      return (
+        <div>
+          {/* Primary Buttons */}
+          <div className="demo-section">
+            <div className="demo-title">Primary Variant</div>
+            <div className="demo-row">
+              <Button size="sm">Small</Button>
+              <Button size="md">Medium</Button>
+              <Button size="lg">Large</Button>
+              <Button disabled>Disabled</Button>
+            </div>
+          </div>
+
+          {/* Secondary Buttons */}
+          <div className="demo-section">
+            <div className="demo-title">Secondary Variant</div>
+            <div className="demo-row">
+              <Button variant="secondary" size="sm">Small</Button>
+              <Button variant="secondary" size="md">Medium</Button>
+              <Button variant="secondary" size="lg">Large</Button>
+            </div>
+          </div>
+
+          {/* Ghost Buttons */}
+          <div className="demo-section">
+            <div className="demo-title">Ghost Variant</div>
+            <div className="demo-row">
+              <Button variant="ghost" size="sm">Small</Button>
+              <Button variant="ghost" size="md">Medium</Button>
+              <Button variant="ghost" size="lg">Large</Button>
+            </div>
+          </div>
+
+          {/* Danger Buttons */}
+          <div className="demo-section">
+            <div className="demo-title">Danger Variant</div>
+            <div className="demo-row">
+              <Button variant="danger" size="md">Delete Action</Button>
+              <Button variant="danger" size="md" disabled>Cannot Delete</Button>
+            </div>
+          </div>
+
+          {/* Full Width */}
+          <div className="demo-section">
+            <div className="demo-title">Full Width</div>
+            <Button fullWidth>Start Audit Now</Button>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<ButtonDemo />, document.getElementById('root'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!-- @dsCard group="Brand" viewport="700x400" name="Brand Identity" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Identity</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .brand-section {
+      margin-bottom: 2rem;
+    }
+    .section-title {
+      font-size: var(--font-size-sm);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: 1rem;
+      font-weight: var(--font-weight-semibold);
+    }
+    .brand-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .value-item {
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-primary);
+    }
+    .value-label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+    }
+    .value-desc {
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+    .brand-showcase {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.5rem;
+      background: var(--color-black);
+      border-radius: var(--radius-md);
+      color: var(--text-inverse);
+    }
+    .showcase-box {
+      width: 60px;
+      height: 60px;
+      background: var(--color-gold);
+      border-radius: var(--radius-md);
+    }
+    .showcase-text h3 {
+      margin: 0;
+      font-size: var(--font-size-h5);
+      color: var(--text-inverse);
+    }
+    .showcase-text p {
+      margin: 0.25rem 0 0 0;
+      font-size: var(--font-size-xs);
+      color: var(--color-gray-400);
+    }
+  </style>
+</head>
+<body>
+  <div class="brand-section">
+    <div class="section-title">Brand Values</div>
+    <div class="brand-values">
+      <div class="value-item">
+        <div class="value-label">Professional</div>
+        <div class="value-desc">Serious expertise & trust</div>
+      </div>
+      <div class="value-item">
+        <div class="value-label">Playful</div>
+        <div class="value-desc">Fun about how we deliver</div>
+      </div>
+      <div class="value-item">
+        <div class="value-label">Premium</div>
+        <div class="value-desc">Elegant & refined aesthetic</div>
+      </div>
+      <div class="value-item">
+        <div class="value-label">Personalized</div>
+        <div class="value-desc">Your unique audit journey</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-section">
+    <div class="section-title">Premium Luxury Touch</div>
+    <div class="brand-showcase">
+      <div class="showcase-box"></div>
+      <div class="showcase-text">
+        <h3>Gold & Silver Accents</h3>
+        <p>Refined details elevate premium positioning</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

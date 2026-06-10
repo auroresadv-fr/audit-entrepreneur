@@ -1,0 +1,435 @@
+<!-- @dsCard group="Products" viewport="1280x1200" name="Website - Style Variations" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persona Business Lab - Style Variations</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 3rem;
+      color: #333;
+    }
+
+    .variations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .variation-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      transition: transform 200ms;
+    }
+
+    .variation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .variation-preview {
+      width: 100%;
+      height: 400px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    .variation-label {
+      padding: 1.5rem;
+      background: #f9f9f9;
+      border-bottom: 1px solid #eee;
+    }
+
+    .variation-label h3 {
+      margin: 0 0 0.25rem 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .variation-label p {
+      margin: 0;
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* ===== VARIATION 1: LUXURY DARK + GOLD ===== */
+    .var1 {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
+      color: #e8e8e8;
+    }
+
+    .var1-header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .var1-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 32px;
+      font-weight: 300;
+      color: #fff;
+      font-family: Georgia, serif;
+    }
+
+    .var1-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .var1-btn {
+      background: #d4af37;
+      color: #0a0a0a;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 0;
+    }
+
+    /* ===== VARIATION 2: MINIMAL MONOCHROME ===== */
+    .var2 {
+      background: #ffffff;
+      color: #000;
+    }
+
+    .var2-header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #000;
+    }
+
+    .var2-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 32px;
+      font-weight: 300;
+      color: #000;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .var2-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #555;
+      font-weight: 300;
+    }
+
+    .var2-btn {
+      background: #000;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 0;
+    }
+
+    /* ===== VARIATION 3: PLAYFUL ROUNDED ===== */
+    .var3 {
+      background: linear-gradient(135deg, #fffbf0 0%, #f8f3ff 100%);
+      color: #2c2c2c;
+    }
+
+    .var3-header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 2px solid #ff6b6b;
+    }
+
+    .var3-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 32px;
+      font-weight: 700;
+      color: #2c2c2c;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .var3-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .var3-btn {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff9999 100%);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 24px;
+    }
+
+    /* ===== VARIATION 4: DARK TECH ===== */
+    .var4 {
+      background: #0f0f0f;
+      color: #e0e0e0;
+    }
+
+    .var4-header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #00d9ff;
+      border-top: 1px solid #00d9ff;
+    }
+
+    .var4-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 32px;
+      font-weight: 600;
+      color: #00d9ff;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .var4-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .var4-btn {
+      background: transparent;
+      color: #00d9ff;
+      padding: 0.5rem 1rem;
+      border: 2px solid #00d9ff;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 4px;
+    }
+
+    /* ===== VARIATION 5: EARTHY & WARM ===== */
+    .var5 {
+      background: linear-gradient(135deg, #f5ede0 0%, #ede5d9 100%);
+      color: #4a3f35;
+    }
+
+    .var5-header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid #a67d5b;
+    }
+
+    .var5-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 32px;
+      font-weight: 400;
+      color: #4a3f35;
+      font-family: Georgia, serif;
+    }
+
+    .var5-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #8b7d72;
+    }
+
+    .var5-btn {
+      background: #a67d5b;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 4px;
+    }
+
+    /* ===== VARIATION 6: SOPHISTICATED SERIF ===== */
+    .var6 {
+      background: #faf8f6;
+      color: #2c2c2c;
+    }
+
+    .var6-header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #d4a5a5;
+    }
+
+    .var6-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 32px;
+      font-weight: 400;
+      color: #4a2c2c;
+      font-family: 'Bodoni Moda', Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+
+    .var6-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #888;
+      font-family: Georgia, serif;
+    }
+
+    .var6-btn {
+      background: #4a2c2c;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 0;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+      .variations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .variations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Persona Business Lab — 6 Style Variations</h1>
+
+    <div class="variations-grid">
+      <!-- VARIATION 1: LUXURY DARK + GOLD -->
+      <div class="variation-card">
+        <div class="variation-label">
+          <h3>1. Luxury Dark + Gold</h3>
+          <p>Premium, Aesop-like, très sophistiqué</p>
+        </div>
+        <div class="variation-preview var1">
+          <div class="var1-header">
+            <h2>Audit Business Personnalisé</h2>
+            <p>Diagnostic adapté à votre profil entrepreneurial</p>
+            <button class="var1-btn">Commencer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIATION 2: MINIMAL MONOCHROME -->
+      <div class="variation-card">
+        <div class="variation-label">
+          <h3>2. Minimal Monochrome</h3>
+          <p>Épuré, ultra-clean, très moderne</p>
+        </div>
+        <div class="variation-preview var2">
+          <div class="var2-header">
+            <h2>Audit Business Personnalisé</h2>
+            <p>Diagnostic adapté à votre profil entrepreneurial</p>
+            <button class="var2-btn">Commencer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIATION 3: PLAYFUL ROUNDED -->
+      <div class="variation-card">
+        <div class="variation-label">
+          <h3>3. Playful Rounded</h3>
+          <p>Jeune, coloré, très approachable</p>
+        </div>
+        <div class="variation-preview var3">
+          <div class="var3-header">
+            <h2>Audit Business Personnalisé</h2>
+            <p>Diagnostic adapté à votre profil entrepreneurial</p>
+            <button class="var3-btn">Commencer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIATION 4: DARK TECH -->
+      <div class="variation-card">
+        <div class="variation-label">
+          <h3>4. Dark Tech</h3>
+          <p>Futuriste, startup/SaaS, très moderne</p>
+        </div>
+        <div class="variation-preview var4">
+          <div class="var4-header">
+            <h2>[PERSONA_LAB]</h2>
+            <p>Diagnostic cybernétique de votre profil</p>
+            <button class="var4-btn">Initialiser</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIATION 5: EARTHY & WARM -->
+      <div class="variation-card">
+        <div class="variation-label">
+          <h3>5. Earthy & Warm</h3>
+          <p>Naturel, chaleureux, très human-centric</p>
+        </div>
+        <div class="variation-preview var5">
+          <div class="var5-header">
+            <h2>Audit Business Personnalisé</h2>
+            <p>Diagnostic adapté à votre profil entrepreneurial</p>
+            <button class="var5-btn">Démarrer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIATION 6: SOPHISTICATED SERIF -->
+      <div class="variation-card">
+        <div class="variation-label">
+          <h3>6. Sophisticated Serif</h3>
+          <p>Éditoriale, magazine luxe, intemporel</p>
+        </div>
+        <div class="variation-preview var6">
+          <div class="var6-header">
+            <h2>Audit Business Personnalisé</h2>
+            <p>Diagnostic adapté à votre profil entrepreneurial</p>
+            <button class="var6-btn">Commencer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

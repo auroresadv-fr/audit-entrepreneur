@@ -1,0 +1,70 @@
+<!-- @dsCard group="Colors" viewport="700x380" name="Accent & Semantic Colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colors - Accent & Semantic</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .color-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .color-swatch {
+      flex: 1;
+      height: 60px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-medium);
+      text-align: center;
+      color: var(--text-tertiary);
+    }
+    .color-swatch.light { border: 1px solid var(--border-primary); }
+    .color-swatch.dark { color: var(--text-inverse); }
+  </style>
+</head>
+<body>
+  <!-- Blue Accent -->
+  <div class="color-row">
+    <div class="color-swatch light" style="background: var(--color-blue-50);">Blue 50</div>
+    <div class="color-swatch light" style="background: var(--color-blue-100);">100</div>
+    <div class="color-swatch light" style="background: var(--color-blue-200);">200</div>
+    <div class="color-swatch" style="background: var(--color-blue-400);">400</div>
+    <div class="color-swatch dark" style="background: var(--color-blue-500);">500</div>
+    <div class="color-swatch dark" style="background: var(--color-blue-700);">700</div>
+  </div>
+
+  <!-- Luxury Accents -->
+  <div class="color-row">
+    <div class="color-swatch dark" style="background: var(--color-gold); border: 1px solid var(--color-gold-dark);">Gold</div>
+    <div class="color-swatch" style="background: var(--color-gold-light); border: 1px solid var(--border-primary);">Gold Light</div>
+    <div class="color-swatch dark" style="background: var(--color-silver);">Silver</div>
+    <div class="color-swatch" style="background: var(--color-silver-light); border: 1px solid var(--border-primary);">Silver Light</div>
+  </div>
+
+  <!-- Semantic Colors -->
+  <div class="color-row">
+    <div class="color-swatch dark" style="background: var(--color-success);">Success</div>
+    <div class="color-swatch" style="background: var(--color-success-light); border: 1px solid var(--border-primary);">Light</div>
+    <div class="color-swatch dark" style="background: var(--color-warning);">Warning</div>
+    <div class="color-swatch" style="background: var(--color-warning-light); border: 1px solid var(--border-primary);">Light</div>
+  </div>
+
+  <div class="color-row">
+    <div class="color-swatch dark" style="background: var(--color-error);">Error</div>
+    <div class="color-swatch" style="background: var(--color-error-light); border: 1px solid var(--border-primary);">Light</div>
+    <div class="color-swatch dark" style="background: var(--color-info);">Info</div>
+    <div class="color-swatch" style="background: var(--color-info-light); border: 1px solid var(--border-primary);">Light</div>
+  </div>
+</body>
+</html>

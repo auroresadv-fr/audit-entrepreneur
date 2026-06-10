@@ -1,0 +1,56 @@
+<!-- @dsCard group="Colors" viewport="700x280" name="Primary & Neutrals" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colors - Primary & Neutrals</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .palette {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .color-swatch {
+      flex: 1;
+      min-width: 45px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0.5rem;
+      font-size: 0.625rem;
+      font-weight: var(--font-weight-medium);
+      text-align: center;
+      color: var(--text-tertiary);
+      transition: transform var(--transition-fast);
+    }
+    .color-swatch:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  </style>
+</head>
+<body>
+  <div class="palette">
+    <div class="color-swatch" style="background: var(--color-black); color: var(--color-white);">Black</div>
+    <div class="color-swatch" style="background: var(--color-gray-900);">900</div>
+    <div class="color-swatch" style="background: var(--color-gray-800);">800</div>
+    <div class="color-swatch" style="background: var(--color-gray-700);">700</div>
+    <div class="color-swatch" style="background: var(--color-gray-600);">600</div>
+    <div class="color-swatch" style="background: var(--color-gray-500);">500</div>
+    <div class="color-swatch" style="background: var(--color-gray-400); border: 1px solid var(--border-primary);">400</div>
+    <div class="color-swatch" style="background: var(--color-gray-300); border: 1px solid var(--border-primary);">300</div>
+    <div class="color-swatch" style="background: var(--color-gray-200); border: 1px solid var(--border-primary);">200</div>
+    <div class="color-swatch" style="background: var(--color-gray-100); border: 1px solid var(--border-primary);">100</div>
+    <div class="color-swatch" style="background: var(--color-white); border: 1px solid var(--border-primary);">White</div>
+  </div>
+</body>
+</html>

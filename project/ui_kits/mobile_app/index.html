@@ -1,0 +1,170 @@
+<!-- @dsCard group="Products" viewport="375x812" name="Mobile App - Dashboard" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concierge Mobile - Dashboard</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYyWkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    .mobile-frame {
+      width: 375px;
+      height: 812px;
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      border: 10px solid #333;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      margin: 0 auto;
+    }
+    .status-bar {
+      background: var(--color-black);
+      color: var(--text-inverse);
+      padding: var(--space-3) var(--space-4);
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-header {
+      background: var(--color-black);
+      color: var(--text-inverse);
+      padding: var(--space-6);
+      text-align: center;
+    }
+    .mobile-header h1 {
+      margin: 0;
+      font-size: var(--font-size-h4);
+    }
+    .mobile-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-6);
+    }
+    .audit-summary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
+      color: var(--text-inverse);
+      padding: var(--space-6);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-6);
+      text-align: center;
+    }
+    .audit-score {
+      font-size: 2.5rem;
+      font-weight: var(--font-weight-bold);
+      margin: var(--space-4) 0;
+    }
+    .mobile-card {
+      background: var(--bg-secondary);
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-4);
+      border: 1px solid var(--border-primary);
+    }
+    .mobile-card h3 {
+      margin-top: 0;
+      font-size: var(--font-size-h5);
+    }
+    .mobile-card p {
+      margin: 0;
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+    }
+    .action-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--font-size-xs);
+      color: var(--accent-primary);
+      margin-top: var(--space-3);
+    }
+    .mobile-footer {
+      background: var(--color-black);
+      color: var(--text-inverse);
+      display: flex;
+      justify-content: space-around;
+      padding: var(--space-3);
+      border-top: 1px solid var(--border-primary);
+    }
+    .footer-icon {
+      font-size: 1.5rem;
+      padding: var(--space-3);
+      cursor: pointer;
+      transition: color var(--transition-base);
+    }
+    .footer-icon.active {
+      color: var(--accent-primary);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, Badge } = window.DesignSystem_776417;
+
+    function MobileApp() {
+      const [activeTab, setActiveTab] = React.useState('dashboard');
+
+      return (
+        <div className="mobile-frame">
+          <div className="status-bar">
+            <span>9:41</span>
+            <span>📶 📡 🔋</span>
+          </div>
+
+          <div className="mobile-header">
+            <h1>Mon Audit</h1>
+          </div>
+
+          <div className="mobile-content">
+            <div className="audit-summary">
+              <p style={{ margin: "0 0 var(--space-2) 0", fontSize: "var(--font-size-sm)" }}>Votre Score Audit</p>
+              <div className="audit-score">78/100</div>
+              <p style={{ margin: "var(--space-2) 0 0 0", fontSize: "var(--font-size-xs)" }}>Excellent potentiel de croissance</p>
+            </div>
+
+            <h3 style={{ fontSize: "var(--font-size-h6)", margin: "var(--space-4) 0 var(--space-3) 0" }}>Priorités d'Action</h3>
+
+            <div className="mobile-card">
+              <Badge variant="warning" size="sm">Urgent</Badge>
+              <h3>Optimiser votre stratégie marketing</h3>
+              <p>Améliorer votre présence digital et acquisition clients</p>
+              <div className="action-label">→ Lancer session 1-to-1</div>
+            </div>
+
+            <div className="mobile-card">
+              <Badge variant="success" size="sm">En cours</Badge>
+              <h3>Structure financière</h3>
+              <p>Vous êtes sur la bonne voie</p>
+              <div className="action-label">✓ Complété</div>
+            </div>
+
+            <div className="mobile-card">
+              <Badge size="sm">Prochainement</Badge>
+              <h3>Développement équipe</h3>
+              <p>Formation et recrutement stratégique</p>
+              <div className="action-label">→ Voir détails</div>
+            </div>
+          </div>
+
+          <div className="mobile-footer">
+            <div className={`footer-icon ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>📊</div>
+            <div className={`footer-icon ${activeTab === 'results' ? 'active' : ''}`} onClick={() => setActiveTab('results')}>📈</div>
+            <div className={`footer-icon ${activeTab === 'sessions' ? 'active' : ''}`} onClick={() => setActiveTab('sessions')}>👥</div>
+            <div className={`footer-icon ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>⚙️</div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<MobileApp />, document.getElementById('root'));
+  </script>
+</body>
+</html>

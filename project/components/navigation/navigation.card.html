@@ -1,0 +1,82 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Navigation - Tabs" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs Component</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYyWkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .demo-section {
+      margin-bottom: 2rem;
+    }
+    .demo-title {
+      font-size: var(--font-size-sm);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: 1rem;
+      font-weight: var(--font-weight-semibold);
+    }
+    .content {
+      padding: var(--space-6);
+      background: var(--bg-secondary);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Tabs } = window.DesignSystem_776417;
+
+    function TabsDemo() {
+      const [active1, setActive1] = React.useState('audit');
+      const [active2, setActive2] = React.useState('overview');
+
+      const tabs1 = [
+        { id: 'audit', label: 'Audit' },
+        { id: 'results', label: 'Résultats' },
+        { id: 'sessions', label: 'Sessions' },
+      ];
+
+      const tabs2 = [
+        { id: 'overview', label: '📊 Overview' },
+        { id: 'details', label: '📝 Details' },
+        { id: 'actions', label: '✓ Actions' },
+      ];
+
+      return (
+        <div>
+          <div className="demo-section">
+            <div className="demo-title">Default Tabs (Underline)</div>
+            <Tabs tabs={tabs1} activeTab={active1} onChange={setActive1} />
+            <div className="content">
+              <p>Content for: <strong>{tabs1.find(t => t.id === active1).label}</strong></p>
+            </div>
+          </div>
+
+          <div className="demo-section">
+            <div className="demo-title">Pills Variant</div>
+            <Tabs tabs={tabs2} activeTab={active2} onChange={setActive2} variant="pills" />
+            <div className="content">
+              <p>Content for: <strong>{tabs2.find(t => t.id === active2).label}</strong></p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<TabsDemo />, document.getElementById('root'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!-- @dsCard group="Products" viewport="1280x900" name="Website - Luxury Playful (B&W + Gold)" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persona Business Lab</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 300;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: #0a0a0a;
+      border-bottom: 1px solid #1a1a1a;
+      position: relative;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: #d4af37;
+      text-transform: uppercase;
+      font-family: 'Georgia', serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: #999;
+      text-decoration: none;
+      transition: color 200ms ease;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover {
+      color: #d4af37;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
+      padding: 6rem 3rem;
+      text-align: center;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      margin: 0 auto 2rem auto;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem 0;
+      color: #fff;
+      line-height: 1.15;
+      font-family: 'Georgia', serif;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto 2.5rem auto;
+      line-height: 1.8;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.875rem 2rem;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 300ms ease;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 28px;
+    }
+
+    .btn-primary {
+      background: #d4af37;
+      color: #0a0a0a;
+    }
+
+    .btn-primary:hover {
+      background: #e8c547;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: #e8c547;
+      color: #e8c547;
+    }
+
+    /* ===== FREE AUDIT SECTION ===== */
+    .free-audit {
+      background: #0f0f0f;
+      padding: 4rem 3rem 6rem;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .free-audit h2 {
+      font-size: 40px;
+      font-weight: 300;
+      margin: 0 0 1rem 0;
+      color: #fff;
+      font-family: 'Georgia', serif;
+    }
+
+    .free-audit p {
+      font-size: 15px;
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+      line-height: 1.7;
+    }
+
+    .free-audit-subtext {
+      font-size: 11px;
+      color: #666;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features {
+      background: #0a0a0a;
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      padding: 2rem;
+      background: #0f0f0f;
+      border-radius: 20px;
+      border: 1px solid #1a1a1a;
+      text-align: left;
+      transition: all 300ms ease;
+    }
+
+    .feature:hover {
+      border-color: #d4af37;
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid #d4af37;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .feature h3 {
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0 0 0.75rem 0;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: #888;
+      margin: 0;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ===== CTA BRIDGE ===== */
+    .bridge {
+      background: #0f0f0f;
+      padding: 2rem 3rem;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .bridge p {
+      font-size: 15px;
+      color: #aaa;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* ===== PRICING SECTION ===== */
+    .pricing {
+      background: #0a0a0a;
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+
+    .pricing h2 {
+      font-size: 40px;
+      font-weight: 300;
+      margin: 0 0 3rem 0;
+      color: #fff;
+      font-family: 'Georgia', serif;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: #0f0f0f;
+      padding: 2.5rem;
+      border: 1px solid #1a1a1a;
+      border-radius: 24px;
+      text-align: left;
+      position: relative;
+      transition: all 300ms ease;
+    }
+
+    .pricing-card:hover {
+      border-color: #d4af37;
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid #d4af37;
+      background: rgba(212, 175, 55, 0.05);
+      transform: scale(1.02);
+    }
+
+    .pricing-card.featured:hover {
+      transform: scale(1.02) translateY(-4px);
+    }
+
+    .pricing-card.featured::before {
+      content: 'POPULAIRE';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d4af37;
+      color: #0a0a0a;
+      padding: 0.25rem 1rem;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 12px;
+    }
+
+    .pricing-card h3 {
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0 0 1rem 0;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+
+    .price {
+      font-size: 36px;
+      font-weight: 300;
+      color: #d4af37;
+      margin: 1.5rem 0 0.5rem 0;
+      font-family: 'Georgia', serif;
+    }
+
+    .price-period {
+      font-size: 12px;
+      color: #666;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .pricing-card p {
+      font-size: 13px;
+      color: #888;
+      margin: 0 0 2rem 0;
+      line-height: 1.7;
+      min-height: 60px;
+    }
+
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background: transparent;
+      color: #d4af37;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid #d4af37;
+      cursor: pointer;
+      transition: all 300ms ease;
+      border-radius: 20px;
+    }
+
+    .pricing-btn:hover {
+      background: #d4af37;
+      color: #0a0a0a;
+    }
+
+    .pricing-card.featured .pricing-btn {
+      background: #d4af37;
+      color: #0a0a0a;
+      border-color: #d4af37;
+    }
+
+    .pricing-card.featured .pricing-btn:hover {
+      background: #e8c547;
+      border-color: #e8c547;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #000;
+      color: #666;
+      padding: 3rem;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+      font-size: 12px;
+    }
+
+    .footer p {
+      margin: 0.5rem 0;
+    }
+
+    .footer-signature {
+      margin-top: 1rem;
+      font-style: italic;
+      font-size: 11px;
+      color: #d4af37;
+      font-family: 'Georgia', serif;
+    }
+
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: #d4af37;
+      margin: 1.5rem auto;
+    }
+
+    /* ===== TWEAKS PANEL ===== */
+    .tweaks-button {
+      position: fixed;
+      bottom: 3rem;
+      right: 3rem;
+      width: 56px;
+      height: 56px;
+      background: #d4af37;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+      transition: all 300ms ease;
+      z-index: 9999;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tweaks-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+    }
+
+    .tweaks-panel {
+      position: fixed;
+      bottom: 7rem;
+      right: 2rem;
+      width: 300px;
+      background: #0f0f0f;
+      border: 1px solid #1a1a1a;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: none;
+    }
+
+    .tweaks-panel.open {
+      display: block;
+      animation: slideUp 300ms ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tweak-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .tweak-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .tweak-label {
+      font-size: 12px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    .tweak-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .tweak-radio {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .tweak-radio input[type="radio"] {
+      cursor: pointer;
+      accent-color: #d4af37;
+    }
+
+    .tweak-radio label {
+      cursor: pointer;
+      font-size: 13px;
+      color: #ddd;
+      margin: 0;
+    }
+
+    .tweak-select {
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid #2a2a2a;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 200ms ease;
+    }
+
+    .tweak-select:hover {
+      border-color: #d4af37;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .features,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+
+      .pricing-card.featured:hover {
+        transform: scale(1) translateY(-4px);
+      }
+
+      .tweaks-button {
+        bottom: 1rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+
+      .tweaks-panel {
+        bottom: 5rem;
+        right: 1rem;
+        width: 280px;
+      }
+    }
+  </style>
+<link id="gfont-Abril-Fatface" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface:wght@300;400;500;600;700&amp;display=swap">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">◆ Persona Business Lab</div>
+    <ul class="nav-links">
+      <li><a href="#features">About</a></li>
+      <li><a href="#pricing">Tarifs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-divider"></div>
+      <h1 style="font-family: &quot;Abril Fatface&quot;">Audit Business<br/>Personnalisé</h1>
+      <p>Un diagnostic détaillé adapté à votre profil entrepreneurial. Recommandations concrètes pour activer votre potentiel de croissance sans limites.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Commencer</button>
+        <button class="btn btn-secondary">En savoir plus</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE AUDIT SECTION -->
+  <section class="free-audit">
+    <h2>Commencez Gratuitement</h2>
+    <p style="color: rgb(255, 255, 255)">Découvrez les bases de votre profil entrepreneurial avec notre audit simplifié. Zéro engagement, zéro frais.</p>
+    <button class="btn btn-primary">Démarrer l'Audit Gratuit</button>
+    <p class="free-audit-subtext" style="font-size: 12px">10 minutes • Résultats instantanés • Zéro spam</p>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <h3>Analyse Approfondie</h3>
+      <p>Diagnostic complet basé sur votre personnalité et vos besoins business spécifiques.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📈</div>
+      <h3>Plan d'Action</h3>
+      <p>Recommandations précises et mesurables adaptées à votre contexte entrepreneurial.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🤝</div>
+      <h3>Accompagnement 1-to-1</h3>
+      <p>Séances personnalisées avec experte & recherche de prestataires alignés à vos valeurs.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📱</div>
+      <h3>App Mobile</h3>
+      <p>Suivi de votre progression et accès à vos résultats d'audit depuis votre téléphone.</p>
+    </div>
+  </section>
+
+  <!-- CTA BRIDGE -->
+  <section class="bridge">
+    <p>Prêt(e) à investir dans votre réussite ?</p>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <h2 style="font-family: &quot;Abril Fatface&quot;">Choisissez Votre Parcours</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Audit Seul</h3>
+        <div class="price">101€</div>
+        <p class="price-period" style="color: rgb(191, 190, 190)">Accès une fois</p>
+        <p style="color: rgb(255, 255, 255)">Audit détaillé & rapport complet avec recommandations stratégiques.</p>
+        <button class="pricing-btn">Choisir</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <h3>Audit + Accompagnement</h3>
+        <div class="price">À partir de<br/>740€</div>
+        <p class="price-period" style="color: rgb(182, 182, 182)">Forfait flexible</p>
+        <p style="color: rgb(255, 255, 255)">Audit + séances 1-to-1 avec experte & recherche de prestataires.</p>
+        <button class="pricing-btn">Choisir</button>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Premium+</h3>
+        <div class="price">Sur devis</div>
+        <p class="price-period">Offre sur-mesure</p>
+        <p>Audit + sessions illimitées + app mobile + support VIP.</p>
+        <button class="pricing-btn">Demander un devis</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-divider"></div>
+    <p style="color: rgb(164, 159, 159)">© 2026 Persona Business Lab</p>
+    <p class="footer-signature">by Aurore S</p>
+  </footer>
+
+  <!-- TWEAKS PANEL -->
+  <button class="tweaks-button" id="tweaks-toggle">⚙️</button>
+  <div class="tweaks-panel" id="tweaks-panel">
+    <div class="tweak-section">
+      <label class="tweak-label">Mood</label>
+      <div class="tweak-options">
+        <div class="tweak-radio">
+          <input type="radio" id="mood-luxury" name="mood" value="luxury" checked>
+          <label for="mood-luxury">✨ Luxury Dark</label>
+        </div>
+        <div class="tweak-radio">
+          <input type="radio" id="mood-playful" name="mood" value="playful">
+          <label for="mood-playful">☀️ Playful Light</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="tweak-section">
+      <label class="tweak-label" for="accent-select">Accent Color</label>
+      <select class="tweak-select" id="accent-select">
+        <option value="#d4af37">✨ Gold</option>
+        <option value="#c0c0c0">🌙 Silver</option>
+        <option value="#b87333">🔶 Copper</option>
+        <option value="#ffffff">⚪ White</option>
+      </select>
+    </div>
+
+    <div class="tweak-section">
+      <label class="tweak-label">Typography</label>
+      <div class="tweak-options">
+        <div class="tweak-radio">
+          <input type="radio" id="typo-georgia" name="typography" value="georgia" checked>
+          <label for="typo-georgia">Georgia (Elegant)</label>
+        </div>
+        <div class="tweak-radio">
+          <input type="radio" id="typo-modern" name="typography" value="modern">
+          <label for="typo-modern">Modern (Tech)</label>
+        </div>
+        <div class="tweak-radio">
+          <input type="radio" id="typo-playful" name="typography" value="playful">
+          <label for="typo-playful">Playful (Fun)</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tweaks Panel Controller
+    const tweaksToggle = document.getElementById('tweaks-toggle');
+    const tweaksPanel = document.getElementById('tweaks-panel');
+    
+    tweaksToggle.addEventListener('click', () => {
+      tweaksPanel.classList.toggle('open');
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!tweaksPanel.contains(e.target) && !tweaksToggle.contains(e.target)) {
+        tweaksPanel.classList.remove('open');
+      }
+    });
+
+    // Mood Controller
+    document.querySelectorAll('input[name="mood"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const mood = e.target.value;
+        if (mood === 'luxury') {
+          document.body.style.background = '#0a0a0a';
+          document.body.style.color = '#e8e8e8';
+          document.querySelectorAll('.navbar').forEach(el => {
+            el.style.background = '#0a0a0a';
+            el.style.borderBottomColor = '#1a1a1a';
+          });
+          document.querySelectorAll('.hero').forEach(el => {
+            el.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%)';
+          });
+          document.querySelectorAll('.free-audit').forEach(el => {
+            el.style.background = '#0f0f0f';
+          });
+          document.querySelectorAll('h1, h2, h3').forEach(el => {
+            el.style.color = '#fff';
+          });
+          document.querySelectorAll('.hero p, .free-audit p, .feature p, .bridge p').forEach(el => {
+            el.style.color = '#aaa';
+          });
+          document.querySelectorAll('.feature, .pricing-card').forEach(el => {
+            el.style.background = '#0f0f0f';
+            el.style.borderColor = '#1a1a1a';
+          });
+        } else {
+          document.body.style.background = '#f8f7f3';
+          document.body.style.color = '#1a1a1a';
+          document.querySelectorAll('.navbar').forEach(el => {
+            el.style.background = '#fff';
+            el.style.borderBottomColor = '#e0dcd8';
+          });
+          document.querySelectorAll('.hero').forEach(el => {
+            el.style.background = 'linear-gradient(135deg, #f8f7f3 0%, #fff 50%, #f8f7f3 100%)';
+          });
+          document.querySelectorAll('.free-audit').forEach(el => {
+            el.style.background = '#faf8f4';
+          });
+          document.querySelectorAll('h1, h2, h3').forEach(el => {
+            el.style.color = '#1a1a1a';
+          });
+          document.querySelectorAll('.hero p, .free-audit p, .feature p, .bridge p').forEach(el => {
+            el.style.color = '#666';
+          });
+          document.querySelectorAll('.feature, .pricing-card').forEach(el => {
+            el.style.background = '#fff';
+            el.style.borderColor = '#e0dcd8';
+          });
+        }
+      });
+    });
+
+    // Accent Color Controller
+    document.getElementById('accent-select').addEventListener('change', (e) => {
+      const accentColor = e.target.value;
+      document.querySelectorAll('.logo, .price, .footer-signature').forEach(el => {
+        el.style.color = accentColor;
+      });
+      document.querySelectorAll('.btn-primary').forEach(el => {
+        el.style.background = accentColor;
+      });
+      document.querySelectorAll('.btn-secondary, .pricing-btn').forEach(el => {
+        el.style.borderColor = accentColor;
+        el.style.color = accentColor;
+      });
+      document.querySelectorAll('.hero-divider, .footer-divider').forEach(el => {
+        el.style.background = `linear-gradient(90deg, transparent, ${accentColor}, transparent)`;
+        el.style.borderColor = accentColor;
+      });
+      document.querySelectorAll('.feature-icon').forEach(el => {
+        el.style.borderColor = accentColor;
+        const rgb = parseInt(accentColor.slice(1), 16);
+        const r = (rgb >> 16) & 255;
+        const g = (rgb >> 8) & 255;
+        const b = rgb & 255;
+        el.style.background = `rgba(${r}, ${g}, ${b}, 0.15)`;
+      });
+      document.querySelectorAll('.pricing-card.featured').forEach(el => {
+        el.style.borderColor = accentColor;
+        const rgb = parseInt(accentColor.slice(1), 16);
+        const r = (rgb >> 16) & 255;
+        const g = (rgb >> 8) & 255;
+        const b = rgb & 255;
+        el.style.background = `rgba(${r}, ${g}, ${b}, 0.05)`;
+      });
+      document.querySelectorAll('.tweaks-button').forEach(el => {
+        el.style.background = accentColor;
+      });
+    });
+
+    // Typography Controller
+    document.querySelectorAll('input[name="typography"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const typo = e.target.value;
+        let fontFamily = '"Georgia", serif';
+        let fontWeight = '300';
+        
+        if (typo === 'modern') {
+          fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+          fontWeight = '600';
+        } else if (typo === 'playful') {
+          fontFamily = '"Abril Fatface", serif';
+          fontWeight = '700';
+        }
+        
+        document.querySelectorAll('h1, h2, .price, .logo, .footer-signature').forEach(el => {
+          el.style.fontFamily = fontFamily;
+          el.style.fontWeight = fontWeight;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

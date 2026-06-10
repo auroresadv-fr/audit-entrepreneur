@@ -1,0 +1,115 @@
+<!-- @dsCard group="Components" viewport="700x500" name="Inputs & Forms" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Component</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .demo-section {
+      margin-bottom: 2rem;
+      max-width: 400px;
+    }
+    .demo-title {
+      font-size: var(--font-size-sm);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: 1rem;
+      font-weight: var(--font-weight-semibold);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Input } = window.DesignSystem_776417;
+
+    function InputDemo() {
+      const [values, setValues] = React.useState({
+        text: "",
+        email: "",
+        password: "",
+        number: "",
+      });
+
+      const handleChange = (field) => (e) => {
+        setValues(prev => ({ ...prev, [field]: e.target.value }));
+      };
+
+      return (
+        <div>
+          <div className="demo-section">
+            <div className="demo-title">Text Input</div>
+            <Input
+              label="Full Name"
+              placeholder="Your name"
+              value={values.text}
+              onChange={handleChange("text")}
+              fullWidth
+            />
+          </div>
+
+          <div className="demo-section">
+            <div className="demo-title">Email Input with Icon</div>
+            <Input
+              label="Email Address"
+              type="email"
+              placeholder="you@example.com"
+              icon="✉️"
+              value={values.email}
+              onChange={handleChange("email")}
+              fullWidth
+            />
+          </div>
+
+          <div className="demo-section">
+            <div className="demo-title">Password Input</div>
+            <Input
+              label="Password"
+              type="password"
+              placeholder="Enter password"
+              icon="🔒"
+              value={values.password}
+              onChange={handleChange("password")}
+              fullWidth
+            />
+          </div>
+
+          <div className="demo-section">
+            <div className="demo-title">Error State</div>
+            <Input
+              label="Business Name"
+              error
+              helperText="This field is required"
+              value=""
+              fullWidth
+            />
+          </div>
+
+          <div className="demo-section">
+            <div className="demo-title">Disabled Input</div>
+            <Input
+              label="Audit ID"
+              disabled
+              value="AUDIT-2024-001"
+              fullWidth
+            />
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<InputDemo />, document.getElementById('root'));
+  </script>
+</body>
+</html>

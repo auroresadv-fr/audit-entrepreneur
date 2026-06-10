@@ -1,0 +1,231 @@
+<!-- @dsCard group="Products" viewport="1280x800" name="Website Marketing" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concierge Business - Marketing Site</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-6);
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border-primary);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+    .logo {
+      font-size: var(--font-size-h3);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-6);
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      transition: color var(--transition-base);
+    }
+    .nav-links a:hover {
+      color: var(--accent-primary);
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      padding: var(--space-20);
+      text-align: center;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: var(--font-size-display-1);
+      margin-bottom: var(--space-6);
+      color: var(--text-primary);
+    }
+    .hero p {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: var(--space-8);
+    }
+    .cta-buttons {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+      padding: var(--space-20);
+      background: var(--bg-primary);
+    }
+    .feature-card {
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      text-align: center;
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-4);
+    }
+    .feature-card h3 {
+      margin-bottom: var(--space-3);
+    }
+    .pricing {
+      padding: var(--space-20);
+      background: var(--bg-secondary);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-8);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      padding: var(--space-8);
+      background: var(--bg-primary);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--accent-primary);
+      transform: scale(1.05);
+    }
+    .price {
+      font-size: var(--font-size-display-2);
+      font-weight: var(--font-weight-bold);
+      color: var(--accent-primary);
+      margin: var(--space-4) 0;
+    }
+    .footer {
+      background: var(--color-black);
+      color: var(--text-inverse);
+      padding: var(--space-12);
+      text-align: center;
+      font-size: var(--font-size-sm);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, Card, Badge } = window.DesignSystem_776417;
+
+    function MarketingSite() {
+      return (
+        <div>
+          {/* Navigation */}
+          <nav className="navbar">
+            <div className="logo">🎯 CONCIERGE</div>
+            <ul className="nav-links">
+              <li><a href="#features">Fonctionnalités</a></li>
+              <li><a href="#pricing">Tarifs</a></li>
+              <li><a href="#about">À propos</a></li>
+              <li><Button size="sm">Connexion</Button></li>
+            </ul>
+          </nav>
+
+          {/* Hero Section */}
+          <section className="hero">
+            <h1>Audit Business Personnalisé</h1>
+            <p>Découvrez une stratégie sur mesure adaptée à votre profil entrepreneurial et vos objectifs uniques.</p>
+            <div className="cta-buttons">
+              <Button size="lg">Commencer l'Audit</Button>
+              <Button variant="secondary" size="lg">En savoir plus</Button>
+            </div>
+          </section>
+
+          {/* Features */}
+          <section className="features" id="features">
+            <div className="feature-card">
+              <div className="feature-icon">📊</div>
+              <h3>Analyse Détaillée</h3>
+              <p>Un diagnostic complet basé sur votre personnalité et vos besoins business.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">🎯</div>
+              <h3>Actions Concrètes</h3>
+              <p>Recommandations précises et un plan d'action personnalisé pour votre entreprise.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">👥</div>
+              <h3>Accompagnement 1-to-1</h3>
+              <p>Option de conseil personnalisé avec nos experts pour implémenter vos stratégies.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">📱</div>
+              <h3>App Mobile</h3>
+              <p>Suivez votre progression et accédez à vos résultats depuis votre téléphone.</p>
+            </div>
+          </section>
+
+          {/* Pricing */}
+          <section className="pricing" id="pricing">
+            <h2 style={{ textAlign: "center", marginBottom: "var(--space-12)" }}>Nos Tarifs</h2>
+            <div className="pricing-grid">
+              <div className="pricing-card">
+                <Badge>Starter</Badge>
+                <h3>Audit Seul</h3>
+                <div className="price">€199</div>
+                <p>Audit détaillé et rapport complet</p>
+                <Button fullWidth variant="secondary">Choisir</Button>
+              </div>
+
+              <div className="pricing-card featured">
+                <Badge variant="primary">Populaire</Badge>
+                <h3>Audit + Conseil</h3>
+                <div className="price">€499</div>
+                <p>Audit + 3 sessions de conseil 1-to-1</p>
+                <Button fullWidth>Choisir</Button>
+              </div>
+
+              <div className="pricing-card">
+                <Badge variant="success">Premium</Badge>
+                <h3>Audit + Premium</h3>
+                <div className="price">€999</div>
+                <p>Audit + 6 sessions + app mobile + support</p>
+                <Button fullWidth variant="secondary">Choisir</Button>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="footer">
+            <p>&copy; 2024 Concierge Business. Tous droits réservés.</p>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<MarketingSite />, document.getElementById('root'));
+  </script>
+</body>
+</html>

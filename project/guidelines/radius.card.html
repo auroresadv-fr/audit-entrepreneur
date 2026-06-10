@@ -1,0 +1,52 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Corner Radius" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corner Radius</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .radius-row {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .radius-box {
+      width: 70px;
+      height: 70px;
+      background: var(--accent-primary);
+    }
+    .radius-label {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="radius-row">
+    <div class="radius-box" style="border-radius: var(--radius-sm);"></div>
+    <div class="radius-label">SM (6px)</div>
+  </div>
+
+  <div class="radius-row">
+    <div class="radius-box" style="border-radius: var(--radius-md);"></div>
+    <div class="radius-label">MD (12px) - Default</div>
+  </div>
+
+  <div class="radius-row">
+    <div class="radius-box" style="border-radius: var(--radius-lg);"></div>
+    <div class="radius-label">LG (16px)</div>
+  </div>
+
+  <div class="radius-row">
+    <div class="radius-box" style="border-radius: var(--radius-full);"></div>
+    <div class="radius-label">Full (Pill)</div>
+  </div>
+</body>
+</html>

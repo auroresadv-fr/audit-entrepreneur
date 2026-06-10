@@ -1462,19 +1462,53 @@
         const API_KEY = 'mzfvwh8z85gcxq4zr9g58hpquyaoc3ijx10m26ngl74yw0k8wvf7ujsftl5gam4h';
         const API_URL = 'https://api.systeme.io/api/contacts';
 
-        // Préparer les données du contact avec les résultats
+        // Préparer les scores
         const scoresDetail = themeScores.map((score, idx) => {
           return `${themes[idx].name}: ${score}/16`;
         }).join(' | ');
+
+        // Préparer les réponses détaillées question par question
+        const detailedAnswers = answers.map((answerIdx, qIdx) => {
+          const {ti, li} = this.getThemeAndLocal(qIdx);
+          const theme = themes[ti];
+          const question = theme.questions[li];
+          const answerText = answerIdx !== null ? question.opts[answerIdx] : 'Non répondu';
+          return `Q${qIdx + 1} [${theme.name}]: ${question.q}\nRéponse: ${answerText}`;
+        }).join('\n\n');
+
+        // Préparer les données du formulaire initial
+        const formData = {
+          sexe: userInfo.sexe || 'Non spécifié',
+          age: userInfo.age || 'Non spécifié',
+          taille_entreprise: userInfo.taille_entreprise || 'Non spécifié'
+        };
 
         const contactData = {
           email: email,
           first_name: prenom,
           custom_fields: {
+            // Données du formulaire initial
+            sexe: formData.sexe,
+            age: formData.age,
+            taille_entreprise: formData.taille_entreprise,
+
+            // Résultats généraux
             archetype: currentArchetype.arch.name,
+            description_archetype: currentArchetype.arch.desc,
             score: currentArchetype.total,
+            axe_prioritaire: currentArchetype.themeName,
+
+            // Scores par thème
             scores_detail: scoresDetail,
-            date_submission: new Date().toLocaleString('fr-FR')
+
+            // Réponses détaillées (pour email admin)
+            detailed_answers: detailedAnswers,
+
+            // Date
+            date_submission: new Date().toLocaleString('fr-FR'),
+
+            // Pour suivi futur
+            contact_source: 'audit_entrepreneur'
           }
         };
 
@@ -1489,7 +1523,7 @@
         })
         .then(response => {
           if (response.ok) {
-            console.log('✓ Contact ajouté à Systeme.io');
+            console.log('✓ Contact ajouté à Systeme.io avec toutes les données');
             // Afficher les résultats après succès
             this.showResult();
           } else {

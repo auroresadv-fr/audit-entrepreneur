@@ -106,28 +106,77 @@ Pour accéder à ton bilan complet avec recommandations personnalisées:
 **Action 1: Envoyer un email à l'admin**
 - À: **Votre email** (aurore.s.adv@gmail.com)
 - De: Systeme.io
-- Objet: `[AUDIT] Nouvelle soumission - {{first_name}}`
+- Objet: `[AUDIT] {{first_name}} - {{archetype}}`
 
-**Contenu:**
+**Contenu complet:**
 
 ```
-Nouvelle soumission d'audit:
+═══════════════════════════════════════════════
+NOUVELLE SOUMISSION D'AUDIT ENTREPRENEUR
+═══════════════════════════════════════════════
 
+INFOS CONTACT
+─────────────
 Prénom: {{first_name}}
 Email: {{email}}
 Date: {{date_submission}}
 
-Résultats:
-- Archétype: {{archetype}}
-- Score: {{score}}/160
+DONNÉES PERSONNELLES
+────────────────────
+Sexe: {{sexe}}
+Tranche d'âge: {{age}}
+Taille entreprise: {{taille_entreprise}}
 
-Scores détaillés:
+RÉSULTATS GÉNÉRAUX
+──────────────────
+Archétype: {{archetype}}
+Score global: {{score}}/160
+Axe prioritaire: {{axe_prioritaire}}
+
+Description:
+{{description_archetype}}
+
+SCORES PAR THÈME
+────────────────
 {{scores_detail}}
 
-À relancer: {{date_submission_12_mois}}
+═══════════════════════════════════════════════
+RÉPONSES DÉTAILLÉES QUESTION PAR QUESTION
+═══════════════════════════════════════════════
 
+{{detailed_answers}}
+
+═══════════════════════════════════════════════
+ACTION
+─────
 → Voir le contact dans Systeme.io
+→ À relancer: {{date_submission_12_mois}}
+═══════════════════════════════════════════════
 ```
+
+---
+
+## 📊 Variables disponibles dans l'email d'admin
+
+**Données personnelles:**
+- `{{first_name}}` = Prénom
+- `{{email}}` = Email
+- `{{sexe}}` = Sexe (Femme/Homme)
+- `{{age}}` = Tranche d'âge (18-35/35-40/40-50/50+)
+- `{{taille_entreprise}}` = Taille de l'entreprise
+
+**Résultats:**
+- `{{archetype}}` = L'archétype identifié
+- `{{score}}` = Score global (ex: 125)
+- `{{axe_prioritaire}}` = Axe principal à travailler
+- `{{description_archetype}}` = Description complète de l'archétype
+- `{{scores_detail}}` = Tous les scores par thème
+
+**Réponses détaillées:**
+- `{{detailed_answers}}` = **TOUTES les réponses question par question** (40 questions avec les réponses choisies)
+
+**Autres:**
+- `{{date_submission}}` = Date/heure de soumission
 
 ---
 

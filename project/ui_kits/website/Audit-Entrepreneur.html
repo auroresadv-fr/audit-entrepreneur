@@ -922,6 +922,32 @@
       </div>
     </div>
 
+    <!-- CAPTURE INFO (Prénom & Email) -->
+    <div class="screen" id="screen-capture-info">
+      <div class="brand">PERSONA BUSINESS LAB</div>
+      <h1>Presque fini !</h1>
+      <p class="subtitle">Pour accéder à tes résultats et recommandations personnalisées, remplis ces informations.</p>
+
+      <div style="margin: 3rem 0;">
+        <div class="form-block">
+          <label class="form-label" style="display: block; margin-bottom: 0.75rem;">Ton prénom</label>
+          <input type="text" id="capture-prenom" class="form-input" placeholder="Ex: Marie" style="width: 100%; padding: 12px 16px; border: 1px solid #1a1a1a; border-radius: 12px; background: #0f0f0f; color: #e8e8e8; font-size: 14px; transition: all 300ms ease;">
+        </div>
+
+        <div class="form-block" style="margin-top: 1.5rem;">
+          <label class="form-label" style="display: block; margin-bottom: 0.75rem;">Ton email</label>
+          <input type="email" id="capture-email" class="form-input" placeholder="Ex: marie@example.com" style="width: 100%; padding: 12px 16px; border: 1px solid #1a1a1a; border-radius: 12px; background: #0f0f0f; color: #e8e8e8; font-size: 14px; transition: all 300ms ease;">
+        </div>
+
+        <p style="font-size: 12px; color: #666; margin-top: 1rem; font-style: italic;">Tes données restent confidentielles. Nous les utilisons uniquement pour t'envoyer tes résultats.</p>
+      </div>
+
+      <div class="nav" style="flex-direction: column; gap: 12px;">
+        <button class="btn btn-primary btn-full" onclick="auditApp.submitCaptureInfo()" style="width: 100%;">Accéder à mes résultats</button>
+        <button class="btn btn-full" onclick="auditApp.showScreen('screen-questions')" style="width: 100%; background: transparent; color: #d4af37; border: 1px solid #d4af37;">Retour aux questions</button>
+      </div>
+    </div>
+
     <!-- RESULT -->
     <div class="screen" id="screen-result">
       <div class="brand">PERSONA BUSINESS LAB</div>
@@ -1407,8 +1433,27 @@
         const {ti} = this.getThemeAndLocal(current);
         themeScores[ti] += (4 - selectedOption);
         current++;
-        if (current >= 39) { this.showResult(); return; }
+        if (current >= 40) { this.showScreen('screen-capture-info'); return; }
         this.renderQuestion();
+      },
+
+      submitCaptureInfo() {
+        const prenom = document.getElementById('capture-prenom').value.trim();
+        const email = document.getElementById('capture-email').value.trim();
+
+        if (!prenom) {
+          alert('Merci de renseigner ton prénom');
+          return;
+        }
+        if (!email || !email.includes('@')) {
+          alert('Merci de renseigner un email valide');
+          return;
+        }
+
+        userInfo.prenom = prenom;
+        userInfo.email = email;
+
+        this.showResult();
       },
 
       showResult() {

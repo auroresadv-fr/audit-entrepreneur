@@ -1453,7 +1453,113 @@
         userInfo.prenom = prenom;
         userInfo.email = email;
 
+        // Intégration Systeme.io
+        this.integrateSystemeIO(prenom, email);
+
+        // Afficher les résultats
         this.showResult();
+      },
+
+      integrateSystemeIO(prenom, email) {
+        // ÉTAPE 1: Envoyer le contact à Systeme.io
+        const SYSTEME_IO_WEBHOOK = document.body.getAttribute('data-systeme-webhook') || '';
+
+        if (!SYSTEME_IO_WEBHOOK) {
+          console.warn('Systeme.io webhook non configuré. Voir instructions dans le README.');
+          return;
+        }
+
+        const contactData = {
+          email: email,
+          prenom: prenom,
+          archetype: currentArchetype?.arch.name || '',
+          score: currentArchetype?.total || 0,
+          date: new Date().toISOString()
+        };
+
+        // Envoyer le contact à Systeme.io
+        fetch(SYSTEME_IO_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(contactData)
+        })
+        .then(r => {
+          if (r.ok) console.log('✓ Contact envoyé à Systeme.io');
+          else console.warn('⚠ Systeme.io status:', r.status);
+        })
+        .catch(err => console.warn('⚠ Erreur Systeme.io:', err.message));
+
+        // ÉTAPE 2: Envoyer les résultats par email au client
+        this.sendClientEmail(prenom, email);
+
+        // ÉTAPE 3: Notifier l'admin
+        this.sendAdminEmail(prenom, email);
+      },
+
+      sendClientEmail(prenom, email) {
+        const resultsData = {
+          prenom: prenom,
+          email: email,
+          archetype: currentArchetype.arch.name,
+          score: currentArchetype.total,
+          description: currentArchetype.arch.desc,
+          scores: themeScores.map((score, idx) => ({
+            theme: themes[idx].name,
+            score: score
+          }))
+        };
+
+        // Envoyer via votre backend ou service email
+        const SEND_EMAIL_URL = document.body.getAttribute('data-send-email-url') || '';
+
+        if (!SEND_EMAIL_URL) {
+          console.warn('Service email non configuré. Voir instructions.');
+          return;
+        }
+
+        fetch(SEND_EMAIL_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'results',
+            to: email,
+            prenom: prenom,
+            archetype: resultsData.archetype,
+            score: resultsData.score,
+            description: resultsData.description,
+            scores: resultsData.scores
+          })
+        })
+        .then(r => {
+          if (r.ok) console.log('✓ Email résultats envoyé');
+          else console.warn('⚠ Email status:', r.status);
+        })
+        .catch(err => console.warn('⚠ Erreur email:', err.message));
+      },
+
+      sendAdminEmail(prenom, email) {
+        const SEND_EMAIL_URL = document.body.getAttribute('data-send-email-url') || '';
+
+        if (!SEND_EMAIL_URL) return;
+
+        fetch(SEND_EMAIL_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'admin_notification',
+            prenom: prenom,
+            email: email,
+            archetype: currentArchetype.arch.name,
+            score: currentArchetype.total,
+            scores: themeScores.map((score, idx) => ({
+              theme: themes[idx].name,
+              score: score
+            })),
+            followupDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+          })
+        })
+        .then(r => console.log('✓ Notification admin envoyée'))
+        .catch(err => console.warn('⚠ Erreur notification:', err.message));
       },
 
       showResult() {
